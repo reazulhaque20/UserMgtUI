@@ -43,13 +43,13 @@ app.controller('registerCtrl', function (serverURL, uiURL, $scope, $http, $windo
     $scope.goToLogin = function () {
         $window.location.href = $scope.urlUI + 'index.html';
     };
-    $scope.getUserInfo = function (userId, userName) {
+    $scope.getUserInfo = function (userId) {
 
         if (angular.isUndefined(userId)) {
             return;
         }
 
-        $http.post($scope.urlServer + "api/auth/getUserInfo/" + $scope.userId)
+        $http.post($scope.urlServer + "api/auth/getEmployeeDetail/" + $scope.userId)
             .then(
                 function (response) {
                     console.log(response.data);

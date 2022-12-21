@@ -1,0 +1,18 @@
+{
+    "elements": {},
+    "attributes": {
+        "st-pagination": {
+            "context": "div"
+        },
+        "bs-table-control": {
+            "context": "table"
+        },
+        "st-items-by-page": {
+            "context": "div"
+        },
+        "st-table": {
+            "context": "table"
+        },
+        "ng-init": {}
+    }
+}
