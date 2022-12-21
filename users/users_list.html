@@ -1,0 +1,526 @@
+<!-- Header page -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Apex Purchase manager">
+        <meta name="author" content="Rifat Tanjir">
+        <link rel="shortcut icon" href="../assets/images/favicon.png">
+        <title>Agro ERP System</title>
+
+        <!-- DataTables -->
+        <link href="../assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="../assets/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- choices css -->
+        <link href="../assets/css/choices.min.css" rel="stylesheet" type="text/css" />
+        <!--<link href="assets/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />-->
+        <!-- datepicker css -->
+        <link rel="stylesheet" href="../assets/css/flatpickr.min.css">
+        <!-- FullCalender Css -->
+        <link href="../assets/js/vendors/fullcalendar/core/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/js/vendors/fullcalendar/daygrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/js/vendors/fullcalendar/bootstrap/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/js/vendors/fullcalendar/timegrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/css/toastr.min.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css" <!-- Bootstrap Css -->
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Select 2 Css -->
+        <link href="../assets/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="../assets/js/angularjs/dependency/sweet-alert.css" />
+        <link rel="stylesheet" href="../assets/js/angularjs/dependency/ng-table.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" />
+        <!-- Custom Css-->
+        <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+
+        <!--        <link href="../../assets/css/ng-table/ng-table.min.css" rel="stylesheet" type="text/css" />-->
+    </head>
+
+    <body data-sidebar-size="lg" data-topbar="dark" ng-app="myApp" ng-controller="userListCtrl">
+        <div id="loader_holder">
+<!--            <img src="assets/images/loader_bar.gif" alt="Loading..." />-->
+        </div>
+
+        <!-- <body data-layout="horizontal"> -->
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Users List</h4>
+                                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
+                                                data-bs-target="#userAddModal" ng-click="addUserUtilityFunc()">Add
+                                            User</button>
+                                    </div>
+                                    <div class="card-body">
+<!--                                            <table ng-table="tableParams" class="table" show-filter="true">
+                                                <tr ng-repeat="user in $data">
+                                                    <td data-title="'SN'">{{ (tableParams.page() - 1) * tableParams.count() +
+                                                                            $index + 1}}</td>
+                                                    <td data-title="'UserID'" filter="{ userId : 'text' }" sortable="userId">
+                                                        {{ user.userId}}</td>
+                                                    <td data-title="'UserName'" filter="{ userName: 'text' }"
+                                                        sortable="userName">
+                                                        {{ user.empName}}</td>
+                                                    <td data-title="'Designation'" filter="{ designation: 'text' }"
+                                                        sortable="designation">
+                                                        {{ user.designation}}</td>
+                                                    <td data-title="'Department'" filter="{ department: 'text' }"
+                                                        sortable="department">
+                                                        {{ user.department}}</td>
+                                                    <td data-title="'PhoneNo'" filter="{ phoneNo : 'text'}" sortable="phoneNo">
+                                                        {{
+                                                                        user.mobile}}</td>
+                                                    <td data-title="Action"><button type="button" ng-click="editUser(user)"
+                                                                                    data-bs-toggle="modal" data-bs-target="#userUpdateModal"
+                                                                                    class="btn btn-success">Edit</button>&nbsp;<button type="button" ng-click="userDeleteConfirmation(user)"
+                                                                                    class="btn btn-danger">Delete</button></td>
+                                                </tr>
+                                            </table>-->
+<table id="userList" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Extn.</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <!-- User Delete Modal Start -->
+
+            <div class="modal" tabindex="-1" role="dialog" id="userDeleteModalConfirmation">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">User Delete</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do You Want To Delete User: {{deleteUserData.userId}} ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" ng-click="deleteUser()">Delete</button>
+                            <button type="reset" class="btn btn-soft-danger w-sm waves-effect waves-light"
+                                    data-bs-dismiss="modal" aria-label="Close">
+                                Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--User Delete Modal End-->
+
+            <!-- User Add Modal -->
+            <div id="userAddModal" class="modal fade bs-example-modal-center" data-bs-backdrop="static"
+                 data-bs-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myExtraLargeModalLabel">Add User Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form class="modal-body" id="EditUserDetails">
+                            <input type="hidden" name="REQ" value="updateUserDetails">
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-2">
+                                        <label class="form-label">USER ID</label>
+                                        <input class="form-control" type="text" name="up_user_id" id="up_user_id"
+                                               ng-model="addUser.userId" ng-blur="getUserInfo(addUser.userId)">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">USER NAME</label>
+                                        <input class="form-control" type="text" name="up_user_name" id="up_user_name"
+                                               ng-model="addUser.employeeName">
+                                    </div>
+<!--                                    <div class="mb-2">
+                                        <label class="form-label">FIRST NAME</label>
+                                        <input class="form-control" type="text" name="up_first_name" id="up_first_name"
+                                               ng-model="addUser.firstName">
+                                    </div>-->
+                                    <div class="mb-2">
+                                        <label class="form-label">DESIGNATION</label>
+                                        <input class="form-control" type="text" name="up_designation" id="up_designation"
+                                               ng-model="addUser.designation">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">DEPARTMENT</label>
+<!--                                        <select class="form-select form-control GlobalSelect" name="up_department_id"
+                                                id="up_department_id" required=""
+                                                ng-change="getReportingUser(addUser.department)" ng-model="addUser.department">
+                                            <option ng-repeat="dept in departments" value="{{ dept.deptName}}">{{
+                                                            dept.deptName}}</option>
+                                        </select>-->
+                                        <input class="form-control" type="text" name="up_department" id="up_department"
+                                               ng-model="addUser.department">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">REPORTING TO</label>
+                                        <select class="form-select form-control GlobalSelect" name="up_reporting_to"
+                                                id="up_reporting_to" required ng-model="addUser.reportTo">
+                                            <option ng-repeat="repoUser in reportingUsers" value="{{ repoUser.id}}">{{
+                                                            repoUser.employeeName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-2">
+                                        <div class="row">
+                                            <div class="col-lg-9">
+                                                <label class="form-label">PHONE & EXTENTION</label>
+                                                <input class="form-control default" type="text" name="up_phone"
+                                                       id="up_phone" autocomplete="off" required ng-model="addUser.telephoneNo">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-label"></label>
+                                                <input class="form-control" type="text" name="up_extention"
+                                                       id="up_extention" autocomplete="off" required ng-model="addUser.telephoneExt">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">EMAIL</label>
+                                        <input class="form-control" type="text" name="up_email" id="up_email" required
+                                               ng-model="addUser.emailId">
+                                    </div>
+<!--                                    <div class="mb-2">
+                                        <label class="form-label">LAST NAME</label>
+                                        <input class="form-control" type="text" name="up_last_name" id="up_last_name"
+                                               ng-model="addUser.lastName">
+                                    </div>-->
+                                    <div class="mb-2">
+                                        <label class="form-label">USER ROLE</label>
+                                        <select class="form-select form-control GlobalSelect" name="up_user_role"
+                                                id="up_user_role" required ng-model="addUser.roles">
+                                            <option>Select User Role</option>
+                                            <option value="P">Pending</option>
+                                            <option value="USER">User</option>
+                                            <option value="MANAGER">Manager</option>
+                                            <option value="ADMIN">Admin</option>
+                                            <option value="SUPERADMIN">Super Admin</option>
+                                        </select>
+                                    </div>
+<!--                                    <div class="mb-2">
+                                        <label class="form-label">PERMISSION GROUP</label>
+                                        <select class="form-select form-control GlobalSelect" name="up_group_name"
+                                                id="up_group_name">
+                                            <option>Select Permission Group</option>
+                                            <option value="0" selected>Custom User</option>
+                                        </select>
+                                    </div>-->
+                                    <div class="mb-2">
+                                        <label class="form-label">COMPANY</label>
+<!--                                        <select class="form-select form-control GlobalSelect" name="up_group_name"
+                                                id="up_group_name">
+                                            <option>Select Permission Group</option>
+                                            <option value="0" selected>Custom User</option>
+                                        </select>-->
+                                        <input class="form-control" type="text" name="up_company" id="up_company"
+                                               ng-model="addUser.company">
+                                    </div>
+<!--                                    <div class="mb-2">
+                                        <label class="form-label">DEFAULT STORE NAME</label>
+                                        <select class="form-select form-control GlobalSelect" name="up_store_id"
+                                                id="up_store_id" style="width:100%">
+                                            <option value="">Select Store Name</option>
+                                        </select>
+                                    </div>-->
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer pt-4">
+                            <div class="col-lg-12 text-right">
+                                <button type="reset" class="btn btn-soft-danger w-sm waves-effect waves-light"
+                                        data-bs-dismiss="modal" aria-label="Close"><i class="mdi mdi-close-box-outline"></i>
+                                    Cancel</button>
+                                <button type="submit" form="EditUserDetails"
+                                        class="btn btn-warning w-lg waves-effect waves-light"
+                                        ng-click="addUserDetails(addUser)"><i class="mdi mdi-file-refresh-outline"></i> ADD
+                                    DETAILS</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- User Add Modal -->
+            
+            <!-- User Update Modal -->
+            <div id="userUpdateModal" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myExtraLargeModalLabel">Edit User Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form class="modal-body" id="EditUserDetails" method="post" action="UserController">
+                            <input type="hidden" name="REQ" value="updateUserDetails">
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-2">
+                                        <label class="form-label">USER ID</label>
+                                        <input class="form-control" type="text" name="up_user_id" id="up_user_id"
+                                               ng-model="userData.userId" readonly>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">USER NAME</label>
+                                        <input class="form-control" type="text" name="up_user_name" id="up_user_name"
+                                               ng-model="userData.empName" readonly>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">DESIGNATION</label>
+                                        <input class="form-control" type="text" name="up_designation" id="up_designation"
+                                               ng-model="userData.designation" value="" readonly>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">DEPARTMENT</label>
+                                        <select class="form-select form-control GlobalSelect" name="up_department_id"
+                                                id="up_department_id" required=""
+                                                ng-change="getReportingUser(userData.department)"
+                                                ng-model="userData.department">
+                                            <option ng-repeat="dept in departments" value="{{ dept.deptName}}">{{
+                                                            dept.deptName}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">REPORTING TO</label>
+                                        <select class="form-select form-control GlobalSelect" name="up_reporting_to"
+                                                id="up_reporting_to" required ng-model="userData.reportingUser">
+                                            <option ng-repeat="repoUser in reportingUsers" value="{{ repoUser.name}}">{{
+                                                            repoUser.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-2">
+                                        <div class="row">
+                                            <div class="col-lg-9">
+                                                <label class="form-label">PHONE & EXTENTION</label>
+                                                <input class="form-control default" type="text" name="up_phone"
+                                                       id="up_phone" ng-model="userData.mobile" autocomplete="off" required>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <label class="form-label"></label>
+                                                <input class="form-control" type="text" name="up_extention"
+                                                       id="up_extention" ng-model="userData.extNo" autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">EMAIL</label>
+                                        <input class="form-control" type="text" name="up_email" id="up_email" ng-model="userData.email"
+                                               required>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">USER ROLE</label>
+                                        <!--                                    <select class="form-select form-control GlobalSelect" name="up_user_role"
+                                                                                id="up_user_role" required>
+                                                                                <option>Select User Role</option>
+                                                                                <option value="P">Pending</option>
+                                                                                <option value="User">User</option>
+                                                                                <option value="Manager">Manager</option>
+                                                                                <option value="Admin">Admin</option>
+                                                                                <option value="SuperAdmin">Super Admin</option>
+                                                                            </select>-->
+                                        <select class="form-select form-control GlobalSelect" name="userRole" id="userRole" required="" ng-model="userData.roleName">
+                                            <option ng-repeat="userRole in roles" value="{{userRole.roleName}}">
+                                                {{userRole.roleName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!--                                    <div class="mb-2">
+                                                                            <label class="form-label">PERMISSION GROUP</label>
+                                                                            <select class="form-select form-control GlobalSelect" name="up_group_name"
+                                                                                    id="up_group_name" required>
+                                                                                <option>Select Permission Group</option>
+                                                                                <option value="0" selected>Custom User</option>
+                                                                            </select>
+                                                                        </div>-->
+                                    <!--                                    <div class="mb-2">
+                                                                            <label class="form-label">DEFAULT STORE NAME</label>
+                                                                            <select class="form-select form-control GlobalSelect" name="up_store_id"
+                                                                                    id="up_store_id" style="width:100%" required>
+                                                                                <option value="">Select Store Name</option>
+                                                                            </select>
+                                                                        </div>-->
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer pt-4">
+                            <div class="col-lg-12 text-right">
+                                <button type="reset" class="btn btn-soft-danger w-sm waves-effect waves-light"
+                                        data-bs-dismiss="modal" aria-label="Close"><i class="mdi mdi-close-box-outline"></i>
+                                    Cancel</button>
+                                <button type="submit" form="EditUserDetails" ng-click="updateUserData(userData)"
+                                        class="btn btn-warning w-lg waves-effect waves-light"><i
+                                        class="mdi mdi-file-refresh-outline"></i> UPDATE DETAILS</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- User Update Modal -->
+
+        </div>
+        <!-- END layout-wrapper -->
+        <!-- Footer page -->
+        <!-- Change Password Modal -->
+        <div class="modal fade" id="ChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+             role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Update Your Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="updateUserPassword" class="modal-body">
+                        <input type="hidden" name="REQ" value="setUserNewPassword">
+                        <input type="hidden" name="user_id" id="user_id" value="">
+
+                        <div class="mb-1">
+                            <label class="form-label label-sm">Current Password</label>
+                            <input class="form-control" type="password" name="c_password" id="c_password"
+                                   ng-model="cp.currentPassword" required>
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label label-sm">New Password</label>
+                            <input class="form-control" type="password" name="n_password" id="n_password"
+                                   ng-model="cp.newPassword" required>
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label label-sm">Confirm Password</label>
+                            <input class="form-control" type="password" name="r_password" id="r_password"
+                                   ng-model="cp.confirmPassword" required>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
+                                class="mdi mdi-close"></i> Close</button>
+                        <button type="submit" id="subUpBtn" class="btn btn-success" ng-click="changePassword(cp)"><i
+                                class="mdi mdi-check-decagram-outline"></i> UPDATE PASSWORD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Change Password Modal -->
+        <!-- Footer Libraries page -->
+
+        <!-- JAVASCRIPT -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery.form.js"></script>
+        <script src="../assets/js/bootstrap.bundle.min.js"></script>
+        <script src="../assets/js/metisMenu.min.js"></script>
+        <script src="../assets/js/simplebar.min.js"></script>
+        <script src="../assets/js/waves.min.js"></script>
+        <script src="../assets/js/angular.min.js"></script>
+        <script src="../assets/js/choices.min.js"></script>
+        <script src="../assets/js/select2.min.js"></script>
+        <script src="../assets/js/jquery.dataTables.min.js"></script>
+        <script src="../assets/js/dataTables.bootstrap4.min.js"></script>
+        <script src="../assets/js/dataTables.responsive.min.js"></script>
+        <script src="../assets/js/responsive.bootstrap4.min.js"></script>
+        <script src="../assets/js/dataTables.buttons.min.js"></script>
+        <script src="../assets/js/dataTables.select.min.js"></script>
+        <script src="../assets/js/jszip.min.js"></script>
+        <script src="../assets/js/buttons.html5.min.js"></script>
+        <script src="../assets/js/buttons.colVis.min.js"></script>
+        <script src="../assets/js/buttons.bootstrap4.min.js"></script>
+        <script src="../assets/js/buttons.print.min.js"></script>
+        <script src="../assets/js/flatpickr.min.js"></script>
+        <script src="../assets/js/toastr.min.js"></script>
+        <script src="../assets/js/sweetalert2.min.js"></script>
+        <script src="../assets/js/dummy/datatables.init.js"></script>
+        <script src="../assets/js/app.js"></script>
+
+        <script src="../assets/js/angularjs/angular.min.js"></script>
+        <script src="../assets/js/angularjs/dependency/ng-table.min.js"></script>
+        <script src="../assets/js/angularjs/dependency/smart-table.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/locale/bootstrap-table-en-US.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/extensions/angular/bootstrap-table-angular.min.js"></script>
+        <!-- Sweet Alert -->
+        <script src="../assets/js/angularjs/dependency/sweetalert.min.js"></script>
+        <script src="../assets/js/angularjs/dependency/sweetAlert.js"></script>
+        <!-- Sweet Alert -->
+        <script src="../assets/js/angularjs/app.js"></script>
+        <script src="../assets/js/angularjs/controller/userListController.js"></script>
+        <script>
+                                    $(document).ready(function () {
+                                        $("#loader_holder").hide();
+
+                                        $(".GlobalSelect").each(function () {
+                                            $(this).select2({
+                                                theme: "bootstrap-5",
+                                                dropdownParent: $(this).parent()
+                                            });
+                                        });
+
+                                        $(".datepicker").each(function (i) {
+                                            flatpickr("#" + this.id, {
+                                                allowInput: true,
+                                                enableTime: false,
+                                                dateFormat: "d-m-Y",
+                                                defaultDate: "today"
+                                            });
+                                        });
+
+                                        // Updating Password
+                                        $('#r_password').on('keyup', function () {
+                                            $('#n_password, #r_password').on('keyup', function () {
+                                                if ($('#n_password').val() === $('#r_password').val()) {
+                                                    $('#subUpBtn').removeAttr('disabled');
+                                                    $('#r_password').addClass("is-valid").removeClass("is-invalid");
+                                                } else {
+                                                    $('#r_password').addClass("is-invalid").removeClass("is-valid");
+                                                    $("#subUpBtn").attr('disabled', 'disabled');
+                                                }
+                                            });
+                                        });
+                                    });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('#userList').DataTable({
+                    ajax: {
+                        url: '${pageContext.request.contextPath}/api/mgt/getAllUsers',
+                        data: 
+                    },
+                    columns: [
+                        { data: 'name' },
+                        { data: 'position' },
+                        { data: 'office' },
+                        { data: 'extn' },
+                        { data: 'start_date' },
+                        { data: 'salary' },
+                    ],
+                });
+            });
+        </script>
+    </body>
+
+</html>

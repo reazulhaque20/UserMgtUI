@@ -1,0 +1,155 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Apex Testing Lab Project">
+    <meta name="author" content="Rifat Tanjir">
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <title>Register:Purchase Management System</title>
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/toastr.min.css" rel="stylesheet">
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- Select 2 Css -->
+    <link href="assets/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/js/angularjs/dependency/sweet-alert.css" />
+    <!-- Custom Css-->
+    <link href="assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="RegisterPage" ng-app="myApp" ng-controller="registerCtrl">
+    <!-- <div id="loader_holder">
+        <img src="../assets/images/loader_bar.gif" alt="Loading..." />
+    </div> -->
+
+    <div class="auth-page">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-xxl-8 col-lg-8 col-md-8 login-page-right">
+                    <div class="auth-bg">
+                        <div class="bg-overlay bg-primary"></div>
+                        <div class="brandName">
+                            <h2>Purchase Manager</h2>
+                            <div class="both"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-lg-4 col-md-4">
+                    <div class="auth-full-page-content d-flex p-sm-5 p-4">
+                        <div class="w-100">
+                            <div class="d-flex flex-column h-100">
+                                <div class="mb-2 mb-md-3 text-center">
+                                    <a href="index.html" class="d-block auth-logo">
+                                        <img src="assets/images/logo_ahl.png" alt="" height="70">
+                                    </a>
+                                </div>
+                                <div class="auth-content">
+                                    <div class="text-center">
+                                        <h5 class="mb-3">Register Account</h5>
+                                    </div>
+                                    <form id="RegisterNewAccount" class="needs-validation custom-form" novalidate=""
+                                        method="POST">
+                                        <input type="hidden" class="form-control" name="REQ" value="registerAccount">
+
+                                        <div class="mb-2">
+                                            <label class="form-label">User ID</label>
+                                            <input type="text" class="form-control number" name="user_id" id="user_id"
+                                                ng-model="userId" autocomplete="off" required=""
+                                                ng-blur="getUserInfo(userId,userName)">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-2">
+                                                    <label class="form-label">User Name</label>
+                                                    <input type="text" class="form-control" name="user_name"
+                                                        ng-model="userName" id="user_name" readonly="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-2">
+                                                    <label class="form-label">Designation</label>
+                                                    <input type="text" class="form-control" name="designation"
+                                                        ng-model="designation" id="designation" readonly="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-2">
+                                                <label class="form-label">Department</label>
+                                                <input class="form-control form-control-sm GlobalSelect"
+                                                    ng-model="department" name="department_id" id="department_id"
+                                                    disabled required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-2">
+                                                <label class="form-label">Reporting To</label>
+                                                <input class="form-control form-control-sm GlobalSelect"
+                                                    ng-model="reportingTo" name="report_to" id="report_to" disabled>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-5">
+                                                    <label class="form-label">Extention</label>
+                                                    <input type="text" class="form-control number" name="extention"
+                                                        ng-model="extNo" id="extention" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-5">
+                                                    <label class="form-label">Password</label>
+                                                    <input type="password" class="form-control" name="password"
+                                                        ng-model="password" required="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <button class="btn btn-primary w-100 waves-effect waves-light registerBtn"
+                                                ng-click="registerUser()" type="submit">Register</button>
+                                        </div>
+                                    </form>
+
+                                    <div class="mt-2 text-center">
+                                        <p class="text-muted mb-0">Already have an account ? <a href="index.html"
+                                                class="text-primary fw-semibold"> Login </a> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.form.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/waves.min.js"></script>
+    <script src="assets/js/toastr.min.js"></script>
+    <script src="assets/js/select2.min.js"></script>
+    <script src="assets/js/angularjs/angular.min.js"></script>
+    <script src="assets/js/angularjs/dependency/ng-table.min.js"></script>
+    <script src="assets/js/angularjs/dependency/smart-table.min.js"></script>
+    <script src="assets/js/angularjs/dependency/sweetalert.min.js"></script>
+    <script src="assets/js/angularjs/dependency/sweetAlert.js"></script>
+    <script src="assets/js/angularjs/app.js"></script>
+    <script src="assets/js/angularjs/controller/registerController.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/locale/bootstrap-table-en-US.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/extensions/angular/bootstrap-table-angular.min.js"></script>
+</body>
+
+</html>

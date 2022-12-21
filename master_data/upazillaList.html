@@ -1,0 +1,571 @@
+<!-- Header page -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Apex Purchase manager">
+        <meta name="author" content="Rifat Tanjir">
+        <link rel="shortcut icon" href="../assets/images/favicon.png">
+        <title>Agro ERP System</title>
+
+        <!-- DataTables -->
+        <link href="../assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="../assets/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- choices css -->
+        <link href="../assets/css/choices.min.css" rel="stylesheet" type="text/css" />
+        <!--<link href="assets/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />-->
+        <!-- datepicker css -->
+        <link rel="stylesheet" href="../assets/css/flatpickr.min.css">
+        <!-- FullCalender Css -->
+        <link href="../assets/js/vendors/fullcalendar/core/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/js/vendors/fullcalendar/daygrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/js/vendors/fullcalendar/bootstrap/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/js/vendors/fullcalendar/timegrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/css/toastr.min.css" rel="stylesheet" type="text/css">
+        <link href="../assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css" <!-- Bootstrap Css -->
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Select 2 Css -->
+        <link href="../assets/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="../assets/js/angularjs/dependency/sweet-alert.css" />
+        <!-- Custom Css-->
+        <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+
+        <link href="../assets/css/ng-table/ng-table.min.css" rel="stylesheet" type="text/css" />
+
+        <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <link href="../assets/css/datepicker/datepicker.css" rel="stylesheet" type="text/css">
+        <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body data-sidebar-size="lg" data-topbar="dark" ng-app="myApp" ng-controller="upazilaCtrl"
+          ng-init="checkSessionData()">
+        <!-- <div class="main-content" ng-app="myApp" ng-controller="dashCtrl" ng-init="checkSessionData()">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row dashboard-page">
+                        Dashboard: {{ dashBoad }}<br>
+    
+                        User Token: {{ token }}<br>
+    
+                        User Name: {{ userName }}<br>
+                        User Role: {{ userRole }}<br>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div id="layout-wrapper">
+            <header id="page-topbar">
+                <div class="navbar-header">
+
+                    <!-- Top Left Logo & Short Menu -->
+
+                    <div class="d-flex">
+                        <div class="navbar-brand-box">
+                            <a href="dashboard" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="../assets/images/logo-g-sm.png" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="../assets/images/logo-g-sm.png" alt="" height="24"> <span
+                                        class="logo-txt">Agro ERP</span>
+                                </span>
+                            </a>
+                            <a href="dashboard" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="../assets/images/agro_logo.png" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="../assets/images/agro_logo.png" alt="" height="24"> <span
+                                        class="logo-txt">AGRO-ERP</span>
+                                </span>
+                            </a>
+                        </div>
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                            <i class="mdi mdi-format-align-justify"></i>
+                        </button>
+                    </div>
+
+                    <!-- Top Left Logo & Short Menu -->
+
+                    <div class="d-flex">
+                        <div class="dropdown d-none d-sm-inline-block">
+                            <button type="button" class="btn header-item" id="mode-setting-btn">
+                                <i class="mdi mdi-lightbulb-on-outline"></i>
+                            </button>
+                        </div>
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon position-relative"
+                                id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge bg-danger rounded-pill">0</span>
+                            </button>
+                        </div> -->
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item right-bar-toggle me-2">
+                                <i class="mdi mdi-cog-transfer-outline"></i>
+                            </button>
+                        </div> -->
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item bg-soft-light border-start border-end"
+                                    id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ userName}}</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="javascript.void(0)" data-bs-toggle="modal"
+                                   data-bs-target="#ChangePassword"><i
+                                        class="mdi mdi-account-key-outline align-middle"></i> Change Password</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" ng-click="logout()"><i
+                                        class="mdi mdi-logout font-size-16 align-middle me-1"></i>
+                                    Logout</a>
+                                <!-- <form id="logOutForm" method="post" action="<%= root%>/UserController">
+                                    <input type="hidden" name="REQ" value="LogoutUser" />
+                                </form> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+            <div data-simplebar class="h-100">
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li>
+                            <a href="../dashboard.html" class="disabled"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span
+                                    data-key="t-dashboard">Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cowboy-hat-outline"></i><span data-key="t-pages">Farmer/User
+                                    Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="../farmer.html" data-key="t-starter-page">Farmers List</a></li>
+                                <li><a href="../farmer.html" data-key="t-maintenance">Farmer Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-map-outline"></i><span
+                                    data-key="t-pages">Farmland Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="../farm_land.html" data-key="t-starter-page">Farmland List</a></li>
+                                <li><a href="../farm_land.html" data-key="t-maintenance">Farmland Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-handshake-outline"></i><span data-key="t-pages">Contract
+                                    Farming</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="../contract.html" data-key="t-starter-page">Contracts List</a></li>
+                                <li><a href="../contract.html" data-key="t-maintenance">Create Contract</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Planning</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="../planning.html" data-key="t-starter-page">Planning List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Sowing</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="../sowing.html" data-key="t-starter-page">Sowing List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-tractor"></i><span
+                                    data-key="t-pages">Production</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cart-plus"></i><span
+                                    data-key="t-pages">Procurement</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-warehouse"></i><span
+                                    data-key="t-pages">Warehouse</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-clipboard-search-outline"></i><span
+                                    data-key="t-pages">Monitoring</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-certificate-outline"></i><span
+                                    data-key="t-pages">Certifications</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-flask-plus-outline"></i><span data-key="t-pages">R&D &
+                                    Biotech</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-file-multiple-outline"></i><span
+                                    data-key="t-pages">MIS/Analytics</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cog-outline"></i><span
+                                    data-key="t-pages">Master Data</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="location.html" data-key="t-starter-page">Location
+                                        List</a></li>
+                                <li><a href="officeList.html">Reporting Office</a></li>
+                                <li><a href="officerList.html">Reporting Officer</a></li>
+                                <li><a href="divisionList.html" data-key="t-starter-page">Division
+                                        List</a></li>
+                                <li><a href="districtList.html">District List</a></li>
+                                <li><a href="upazillaList.html" data-key="t-starter-page">Upazila
+                                        List</a></li>
+                                <li><a href="unionList.html" data-key="t-starter-page">Union
+                                        List</a></li>
+                                <li><a href="dropDownList.html" data-key="t-starter-page">DropDown
+                                        List</a></li>
+                                <li><a href="buyer_list.html" data-key="t-starter-page">Buyer
+                                        List</a></li>
+                                <li><a href="crop_list.html">Crop List</a></li>
+                                <li><a href="cropVarietyDetail.html">Crop Variety</a></li>
+                                <li><a href="cropGradeList.html">Crop Grade</a></li>
+                                <li><a href="farmer_input_category.html">Farm Input Category</a>
+                                </li>
+                                <li><a href="season_list.html">Season List</a></li>
+                                <li><a href="supplierList.html">Supplier List</a></li>
+                                <li><a href="warehouseList.html">Warehouse List</a></li>
+                                <li><a href="zone_list.html">Zone List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cog-outline"></i><span data-key="t-System Users">System
+                                    Users</span></a>
+                            <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                <li><a href="" data-key="t-applied_users">Applied Users</a></li>
+                                <li><a href="../users/users_list.html" data-key="t-users_list">Users List</a></li>
+                                <li><a href="" data-key="t-user_groups">User Groups</a></li>
+                                <li><a href="" data-key="t-menu_list">Menu List</a></li>
+                                <li><a href="" data-key="t-menu_permission">Menu Permission</a></li>
+                                <li><a href="" data-key="t-approval_permissions">Approval
+                                        Permission</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span data-key="t-multi-level">Extras</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="calender" data-key="t-level-1-1">Calender</a></li>
+                                <li><a href="mdi" data-key="t-level-1-1">Icons</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <!-- ========== Left Sidebar End ========== -->
+
+            <!-- Main Content Start -->
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Upazila</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Upazila List</h4>
+                                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
+                                                data-bs-target="#addOrEditUpazila" ng-click="addUpazilaClick()">Add
+                                            Upazila</button>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <table ng-table="tableParams" class="table" show-filter="true">
+                                            <tr ng-repeat="zila in $data">
+                                                <td align="center" data-title="'SN'">{{ (tableParams.page() - 1) *
+                                                                        tableParams.count() +
+                                                                        $index + 1}}</td>
+                                                <td align="center" data-title="'Division Name'" filter="{ divName : 'text' }" sortable="divName">
+                                                    {{zila.div.divName}}
+                                                </td>
+                                                <td align="center" data-title="'District Name'"
+                                                    filter="{ disName : 'text' }" sortable="disName">
+                                                    {{ zila.dis.disName}}</td>
+                                                <td align="center" data-title="'Upazila Name Name'"
+                                                    filter="{ zilaName : 'text' }" sortable="zilaName">
+                                                    {{ zila.zilaName}}</td>
+                                                <td align="center" data-title="'Status'"
+                                                    filter="{ status: 'text' }" sortable="status">
+                                                    {{ zila.status}}</td>
+
+                                                <td align="center" data-title="'Action'"><button type="button"
+                                                                                                 ng-click="editUpazila(zila)" data-bs-toggle="modal"
+                                                                                                 data-bs-target="#addOrEditUpazila"
+                                                                                                 class="btn btn-success">Edit</button>&nbsp;<button type="button"
+                                                                                                 class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end row-->
+                    </div>
+                </div>
+            </div>
+            <!-- Main Content End -->
+
+            <!-- Invalid Session Modal Start -->
+            <div class="modal fade" id="invalidSession" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="staticBackdropLabel">
+                                <p style="color: red;">Invalid Session</p>
+                            </h1>
+                        </div>
+                        <form id="updateUserPassword" class="modal-body">
+                            <div class="mb-1">
+                                <span>
+                                    <p>
+                                    <h2>
+                                        Unable to verify User session Data
+                                    </h2>
+                                    </p>
+                                    <p>
+                                    <h4>Please do login</h4>
+                                    </p>
+                                </span>
+                                <button type="button" class="btn btn-primary float-end"
+                                        ng-click="goToLogin()"><b>Login</b></button>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Invalid Session Modal End -->
+
+            <!-- Change Password Modal Start -->
+
+            <div class="modal fade" id="ChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Update Your Password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="updateUserPassword" class="modal-body" method="POST" action="UserController">
+                            <input type="hidden" name="REQ" value="setUserNewPassword">
+                            <input type="hidden" name="user_id" id="user_id" value="">
+
+                            <div class="mb-1">
+                                <label class="form-label label-sm">Current Password</label>
+                                <input class="form-control" type="password" name="c_password" id="c_password" value=""
+                                       required>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label label-sm">New Password</label>
+                                <input class="form-control" type="password" name="n_password" id="n_password" value=""
+                                       required>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label label-sm">Confirm Password</label>
+                                <input class="form-control" type="password" name="r_password" id="r_password" value=""
+                                       required>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
+                                    class="mdi mdi-close"></i> Close</button>
+                            <button type="submit" id="subUpBtn" form="updateUserPassword" class="btn btn-success"><i
+                                    class="mdi mdi-check-decagram-outline"></i> UPDATE PASSWORD</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change Password Modal End -->
+
+
+            <!-- Add or Edit Upazila Modal Start -->
+            <div class="modal fade" id="addOrEditUpazila" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel" ng-if="!zila.id">Add Upazila</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel" ng-if="zila.id">Update Upazila</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="addDistrictForm" class="modal-body">
+                            <div class="mb-1">
+                                <label class="form-label label-sm">Division Name</label>
+                                <select class="form-control form-select" ng-model="div" ng-change="loadDistrictByDivision(div)" ng-show="!zila.id">
+                                    <option ng-repeat="div in divList" ng-value="div" ng-selected="div.divName === zila.div.divName" >{{div.divName}}</option>
+                                </select>
+                                <input class="form-control" type="text" ng-disabled="zila.id" ng-show="zila.id"
+                                       ng-model="zila.div.divName"/>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label label-sm">District Name</label>
+                                <select class="form-control form-select" ng-model="dis" ng-show="!zila.id">
+                                    <option ng-repeat="dis in disList" ng-value="dis" ng-selected="dis.disName === zila.dis.disName">{{dis.disName}}</option>
+                                </select>
+                                <input class="form-control" type="text" placeholder="Enter Upazila Name" ng-disabled="zila.id" ng-show="zila.id"
+                                       ng-model="zila.dis.disName"/>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label label-sm">Upazila Name</label>
+                                <input class="form-control" type="text" placeholder="Enter Upazila Name" 
+                                       ng-model="zila.zilaName" required>
+                            </div>
+                            <div class="mb-1" ng-if="zila.id">
+                                <label class="form-label label-sm">Status</label>
+                                <select class="form-control form-select" ng-model="zila.status">
+                                    <option value="active">Active</option>
+                                    <option value="inActive">InActive</option>
+                                </select>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
+                                    class="mdi mdi-close"></i> Close</button>
+                            <button type="button" class="btn btn-success" ng-if="!zila.id"
+                                    ng-click="addUpazila(zila, dis)"><i class="mdi mdi-check-decagram-outline"></i> ADD
+                                UPAZILA</button>
+                            <button type="button" class="btn btn-success" ng-click="updateUpazila(zila)"
+                                    ng-if="zila.id"><i class="mdi mdi-check-decagram-outline"></i> UPDATE
+                                UPAZILA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Add or Edit Location Modal End -->
+        </div>
+    </body>
+
+    <!-- end main content-->
+    <!-- END layout-wrapper -->
+
+    <!-- Footer page -->
+    <!-- Footer Libraries page -->
+</body>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.form.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/metisMenu.min.js"></script>
+<script src="../assets/js/simplebar.min.js"></script>
+<script src="../assets/js/waves.min.js"></script>
+<script src="../assets/js/feather.min.js"></script>
+<script src="../assets/js/pace.min.js"></script>
+<script src="../assets/js/apexcharts.min.js"></script>
+<script src="../assets/js/dashboard.init.js"></script>
+<script src="../assets/js/angular.min.js"></script>
+<!-- choices js -->
+<script src="../assets/js/choices.min.js"></script>
+<script src="../assets/js/select2.min.js"></script>
+<!-- Required datatable js -->
+<script src="../assets/js/jquery.dataTables.min.js"></script>
+<script src="../assets/js/dataTables.bootstrap4.min.js"></script>
+<script src="../assets/js/dataTables.responsive.min.js"></script>
+<script src="../assets/js/responsive.bootstrap4.min.js"></script>
+<script src="../assets/js/dataTables.buttons.min.js"></script>
+<script src="../assets/js/dataTables.select.min.js"></script>
+<script src="../assets/js/jszip.min.js"></script>
+<script src="../assets/js/buttons.html5.min.js"></script>
+<script src="../assets/js/buttons.colVis.min.js"></script>
+<!-- Buttons examples -->
+<script src="../assets/js/buttons.bootstrap4.min.js"></script>
+<script src="../assets/js/buttons.print.min.js"></script>
+<!-- datepicker js -->
+<script src="../assets/js/flatpickr.min.js"></script>
+<!-- Select 2 js -->
+<script src="../assets/js/toastr.min.js"></script>
+<script src="../assets/js/sweetalert2.min.js"></script>
+<!-- Datatable init js -->
+<script src="../assets/js/dummy/datatables.init.js"></script>
+<script src="../assets/js/app.js"></script>
+<script src="../assets/js/angularjs/angular.min.js"></script>
+<script src="../assets/js/angularjs/dependency/ng-table.min.js"></script>
+<script src="../assets/js/angularjs/dependency/smart-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/locale/bootstrap-table-en-US.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/extensions/angular/bootstrap-table-angular.min.js"></script>
+<!-- Sweet Alert -->
+<script src="../assets/js/angularjs/dependency/sweetalert.min.js"></script>
+<script src="../assets/js/angularjs/dependency/sweetAlert.js"></script>
+<!-- Sweet Alert -->
+<script src="../assets/js/angularjs/app.js"></script>
+<script src="../assets/js/angularjs/service/jwtService.js"></script>
+<script src="../assets/js/angularjs/controller/upazilaListController.js"></script>
+
+</html>

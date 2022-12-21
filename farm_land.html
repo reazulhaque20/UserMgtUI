@@ -1,0 +1,907 @@
+<!-- Header page -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Apex Purchase manager">
+        <meta name="author" content="Rifat Tanjir">
+        <link rel="shortcut icon" href="assets/images/favicon.png">
+        <title>Agro ERP System</title>
+
+        <!-- DataTables -->
+        <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="assets/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- choices css -->
+        <link href="assets/css/choices.min.css" rel="stylesheet" type="text/css" />
+        <!--<link href="assets/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />-->
+        <!-- datepicker css -->
+        <link rel="stylesheet" href="assets/css/flatpickr.min.css">
+        <!-- FullCalender Css -->
+        <link href="assets/js/vendors/fullcalendar/core/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/js/vendors/fullcalendar/daygrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/js/vendors/fullcalendar/bootstrap/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/js/vendors/fullcalendar/timegrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/toastr.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css" <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Select 2 Css -->
+        <link href="assets/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="assets/js/angularjs/dependency/sweet-alert.css" />
+        <!-- Custom Css-->
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+        <link href="assets/css/ng-table/ng-table.min.css" rel="stylesheet" type="text/css" />
+
+        <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <link href="assets/css/datepicker/datepicker.css" rel="stylesheet" type="text/css">
+        <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body data-sidebar-size="lg" data-topbar="dark" ng-app="myApp" ng-controller="farmLandController" ng-init="checkSessionData()">
+        <!-- <div class="main-content" ng-app="myApp" ng-controller="dashCtrl" ng-init="checkSessionData()">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row dashboard-page">
+                        Dashboard: {{ dashBoad }}<br>
+    
+                        User Token: {{ token }}<br>
+    
+                        User Name: {{ userName }}<br>
+                        User Role: {{ userRole }}<br>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div id="layout-wrapper">
+            <header id="page-topbar">
+                <div class="navbar-header">
+
+                    <!-- Top Left Logo & Short Menu -->
+
+                    <div class="d-flex">
+                        <div class="navbar-brand-box">
+                            <a href="dashboard" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-g-sm.png" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-g-sm.png" alt="" height="24"> <span
+                                        class="logo-txt">Agro ERP</span>
+                                </span>
+                            </a>
+                            <a href="dashboard" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="assets/images/agro_logo.png" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/agro_logo.png" alt="" height="24"> <span
+                                        class="logo-txt">AGRO-ERP</span>
+                                </span>
+                            </a>
+                        </div>
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                            <i class="mdi mdi-format-align-justify"></i>
+                        </button>
+                    </div>
+
+                    <!-- Top Left Logo & Short Menu -->
+
+                    <div class="d-flex">
+                        <div class="dropdown d-none d-sm-inline-block">
+                            <button type="button" class="btn header-item" id="mode-setting-btn">
+                                <i class="mdi mdi-lightbulb-on-outline"></i>
+                            </button>
+                        </div>
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon position-relative"
+                                id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge bg-danger rounded-pill">0</span>
+                            </button>
+                        </div> -->
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item right-bar-toggle me-2">
+                                <i class="mdi mdi-cog-transfer-outline"></i>
+                            </button>
+                        </div> -->
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item bg-soft-light border-start border-end"
+                                    id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ userName}}</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="javascript.void(0)" data-bs-toggle="modal"
+                                   data-bs-target="#ChangePassword"><i
+                                        class="mdi mdi-account-key-outline align-middle"></i> Change Password</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" ng-click="logout()"><i
+                                        class="mdi mdi-logout font-size-16 align-middle me-1"></i>
+                                    Logout</a>
+                                <!-- <form id="logOutForm" method="post" action="<%= root%>/UserController">
+                                    <input type="hidden" name="REQ" value="LogoutUser" />
+                                </form> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+            <div data-simplebar class="h-100">
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li>
+                            <a href="dashboard.html" class="disabled"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span
+                                    data-key="t-dashboard">Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cowboy-hat-outline"></i><span data-key="t-pages">Farmer/User
+                                    Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="farmer.html" data-key="t-starter-page">Farmers List</a></li>
+                                <li><a href="farmer.html" data-key="t-maintenance">Farmer Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-map-outline"></i><span
+                                    data-key="t-pages">Farmland Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="farm_land.html" data-key="t-starter-page">Farmland List</a></li>
+                                <li><a href="farm_land.html" data-key="t-maintenance">Farmland Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-handshake-outline"></i><span data-key="t-pages">Contract
+                                    Farming</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="contract.html" data-key="t-starter-page">Contracts List</a></li>
+                                <li><a href="contract.html" data-key="t-maintenance">Create Contract</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Planning</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="planning.html" data-key="t-starter-page">Planning List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Sowing</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="sowing.html" data-key="t-starter-page">Sowing List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-tractor"></i><span
+                                    data-key="t-pages">Production</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cart-plus"></i><span
+                                    data-key="t-pages">Procurement</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-warehouse"></i><span
+                                    data-key="t-pages">Warehouse</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-clipboard-search-outline"></i><span
+                                    data-key="t-pages">Monitoring</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-certificate-outline"></i><span
+                                    data-key="t-pages">Certifications</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-flask-plus-outline"></i><span data-key="t-pages">R&D &
+                                    Biotech</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-file-multiple-outline"></i><span
+                                    data-key="t-pages">MIS/Analytics</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cog-outline"></i><span
+                                    data-key="t-pages">Master Data</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="master_data/location.html" data-key="t-starter-page">Location
+                                        List</a></li>
+                                <li><a href="master_data/officeList.html">Reporting Office</a></li>
+                                <li><a href="master_data/officerList.html">Reporting Officer</a></li>
+                                <li><a href="master_data/divisionList.html" data-key="t-starter-page">Division
+                                        List</a></li>
+                                <li><a href="master_data/districtList.html">District List</a></li>
+                                <li><a href="master_data/upazillaList.html" data-key="t-starter-page">Upazila
+                                        List</a></li>
+                                <li><a href="master_data/unionList.html" data-key="t-starter-page">Union
+                                        List</a></li>
+                                <li><a href="master_data/dropDownList.html" data-key="t-starter-page">DropDown
+                                        List</a></li>
+                                <li><a href="master_data/buyer_list.html" data-key="t-starter-page">Buyer
+                                        List</a></li>
+                                <li><a href="master_data/crop_list.html">Crop List</a></li>
+                                <li><a href="master_data/cropVarietyDetail.html">Crop Variety</a></li>
+                                <li><a href="master_data/cropGradeList.html">Crop Grade</a></li>
+                                <li><a href="master_data/farmer_input_category.html">Farm Input Category</a>
+                                </li>
+                                <li><a href="master_data/season_list.html">Season List</a></li>
+                                <li><a href="master_data/supplierList.html">Supplier List</a></li>
+                                <li><a href="master_data/warehouseList.html">Warehouse List</a></li>
+                                <li><a href="master_data/zone_list.html">Zone List</a></li>
+                                <!--                                <li><a href="offices_list" data-key="t-maintenance">Office List</a></li>
+                                <li><a href="upazillas_lists" data-key="t-maintenance">Upazilla List</a></li>
+                                <li><a href="unions_list" data-key="t-maintenance">Union List</a></li>
+                                <li><a href="seasons_list" data-key="t-maintenance">Season List</a></li>
+                                <li><a href="doses_list" data-key="t-maintenance">Dose List</a></li>
+                                <li><a href="dose_uses" data-key="t-maintenance">Dose Uses List</a></li>-->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cog-outline"></i><span data-key="t-System Users">System
+                                    Users</span></a>
+                            <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                <li><a href="applied_users" data-key="t-applied_users">Applied Users</a></li>
+                                <li><a href="users/users_list.html" data-key="t-users_list">Users List</a></li>
+                                <li><a href="user_groups" data-key="t-user_groups">User Groups</a></li>
+                                <li><a href="menu_list" data-key="t-menu_list">Menu List</a></li>
+                                <li><a href="menu_permission" data-key="t-menu_permission">Menu Permission</a></li>
+                                <li><a href="approval_permissions" data-key="t-approval_permissions">Approval
+                                        Permission</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span data-key="t-multi-level">Extras</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="calender" data-key="t-level-1-1">Calender</a></li>
+                                <li><a href="mdi" data-key="t-level-1-1">Icons</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <!-- ========== Left Sidebar End ========== -->
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">     
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header clearfix">
+                                        <div class="col-lg-4 pull-left"><h4 class="card-title">Farmland Details List</h4></div>
+                                        <button type="button" class="btn btn-success w-sm waves-effect waves-light pull-right" data-bs-toggle="modal" data-bs-target="#addFarmlandDetails"><i class="mdi mdi-card-plus"></i> Add Farm Land</button>
+                                    </div>
+                                    <div>
+                                        
+                                    </div>
+                                    <div class="card-body">
+<!--                                        <table id="farm-master-details" class="table cus-datatable table-striped dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th>FARM ID</th>
+                                                    <th>FARMLAND TYPE</th>
+                                                    <th>CULTIVATION TYPE</th>
+                                                    <th>OWNERSHIP</th>
+                                                    <th>TOPOGRAPHY</th>
+                                                    <th>LAND AREA</th>
+                                                    <th>OFFICE NAME</th>
+                                                    <th>APO NAME</th>
+                                                    <th>FARMER NAME</th>
+                                                    <th>ACTIONS</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>FRM00001</td>
+                                                    <td>Open Field</td>
+                                                    <td>Commercial</td>
+                                                    <td>Owned</td>
+                                                    <td>Plains</td>
+                                                    <td>155 DEC.</td>
+                                                    <td>Rangpur Corporate Office</td>
+                                                    <td>Name of the APO</td>
+                                                    <td>Name of the Farmer</td>
+                                                    <td class=" dt-body-center">
+                                                        <button class="btn btn-soft-primary btn-sm" onclick="editProjectMasterData('120')"><i class="mdi mdi-account-edit-outline"></i></button>
+                                                        <button class="btn btn-soft-danger btn-sm" onclick="delSpecificMasterData('delProjectMaster', '120')"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                        <button class="btn btn-soft-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addNewFarmlandDetails"><i class="mdi mdi-window-open"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>-->
+
+                                        <table class="table" ng-table="tableParams" show-filter="true">
+                                            <tr ng-repeat="farmLand in $data">
+                                                <td align="center" data-title="'SN'">{{ (tableParams.page() - 1) *
+                                                tableParams.count() +
+                                                $index + 1 }}</td>
+                                                <td align="center" data-title="'Farm Land Type'"
+                                                filter="{ farmLandType : 'text' }" sortable="'farmLandType'">{{ farmLand.farmLandType }}</td>
+                                                <td align="center" data-title="'Cultivation Type'" filter="{cultivationType : 'text'}" sortable="'cultivationType'">{{ farmLand.cultivationType }}</td>
+                                                <td align="center" data-title="'Ownership'" filter="{ownership : 'text'}" sortable="'ownership'">{{ farmLand.ownership }}</td>
+                                                <td align="center" data-title="'Topography'" filter="{topography : 'text'}" sortable="'topography'">{{ farmLand.topography }}</td>
+                                                <td align="center" data-title="'Land Area'" filter="{landArea : 'text'}" sortable="'landArea'">{{ farmLand.landArea }}</td>
+                                                <td align="center" data-title="'Office Name'" filter="{'reportingOffice.officeName' : 'text'}" sortable="'reportingOffice.officeName'">{{ farmLand.reportingOffice.officeName }}</td>
+                                                <td align="center" data-title="'Office Name'" filter="{'reportingFieldOfficer.officerName' : 'text'}" sortable="'reportingFieldOfficer.officerName'">{{ farmLand.reportingFieldOfficer.officerName }}</td>
+                                                <td align="center" data-title="'Office Name'" filter="{'farmer.farmerName' : 'text'}" sortable="'farmer.farmerName'">{{ farmLand.farmer.farmerName }}</td>
+                                                <td align="center" data-title="'Action'">
+                                                    <button type="button" class="btn btn-sm btn-danger">DELETE</button>
+                                                    <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#addOrEditFarmlandDetails'123" ng-click="loadEditForm(farmLand)">EDIT</button>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->            
+            </div>
+            <!-- end main content-->  
+            <!--  Extra Large modal example -->
+            <div id="addFarmlandDetails" class="modal fade bs-example-modal-xl" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="myExtraLargeModalLabel">Farmland Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <form id="add-new-farm-details" class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group select2-sm">
+                                        <label class="form-label label-sm">Farmer Name : </label>
+                                        <select class="form-control" ng-model="farmer" name="farmerName" id="farmerName" required>
+                                            <option value="">Select Farmer</option>
+                                            <option ng-repeat="farmer in farmers" ng-selected="farmer.farmerDetail.farmerName" ng-value="farmer">{{ farmer.farmerDetail.farmerName }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group select2-sm">
+                                        <label class="form-label label-sm">Reporting Office Name : </label>
+                                        <select class="form-control" ng-model="reportingOfficeName.id" name="reporting_office" id="reportingOfficeName" required>
+                                            <option value="">Select Office</option>
+                                            <option ng-selected="reportingOfficeName.officeName" ng-repeat="reportingOfficeName in reportingOfficeNames" ng-value="reportingOfficeName.id">{{ reportingOfficeName.officeName }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group select2-sm">
+                                        <label class="form-label label-sm">Reporting Field Officer : </label>
+                                        <select class="form-control" ng-model="reportingFieldOfficerName.id" name="reportingFieldOfficerName" id="reportingFieldOfficerName" required>
+                                            <option value="">Select Office</option>
+                                            <option ng-repeat="reportingFieldOfficerName in reportingFieldOfficerNames" ng-value="reportingFieldOfficerName.id">{{ reportingFieldOfficerName.officerName }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            
+                            <!--FARM-LAND ADD DETAILS START-->
+                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <small class="inputGroupTitle">Farm Land Details </small>
+                                                </div>
+                                <!--<div class="col-lg-12">-->
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">REG NO : </label>
+                                                        <input type="text" class="form-control" name="regNo"
+                                                            id="regNo" ng-model="regNo">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">FARMLAND TYPE : </label>
+                                                        <select class="form-control" ng-model="farmLandType">
+                                                            <option value="">Select Office</option>
+                                                            <option ng-repeat="farmLandType in farmLandTypes" ng-value="farmLandType.dropdownValue">{{ farmLandType.dropdownText }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">CULTIVATION TYPE : </label>
+                                                        <select class="form-control" ng-model="cultivationType">
+                                                            <option value="">Select Office</option>
+                                                            <option ng-repeat="cultivationType in cultivationTypes" ng-value="cultivationType.dropdownValue">{{ cultivationType.dropdownText }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">ownership : </label>
+                                                        <select class="form-control" ng-model="ownership">
+                                                            <option value="">Select Office</option>
+                                                            <option ng-repeat="ownership in ownerships" ng-value="ownership.dropdownValue">{{ ownership.dropdownText }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">topography : </label>
+                                                        <select class="form-control" ng-model="topography">
+                                                            <option value="">Select Office</option>
+                                                            <option ng-repeat="topography in topographys" ng-value="topography.dropdownValue">{{ topography.dropdownText }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">landArea : </label>
+                                                        <input type="text" class="form-control" name="landArea" id="landArea"
+                                                            ng-model="landArea">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">loc lat : </label>
+                                                        <input type="text" class="form-control" name="lat" id="lat"
+                                                            ng-model="lat">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">loc_lon : </label>
+                                                        <input type="text" class="form-control" name="lon" id="lon"
+                                                            ng-model="lon">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">remarks : </label>
+                                                        <input type="text" class="form-control" name="remarks" id="remarks"
+                                                            ng-model="remarks">
+                                                    </div>
+                                                </div>                                
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <span><br></span>
+                                                        <button type="button" class="btn btn-primary"
+                                                            ng-click="addLandType()"><i
+                                                                class="mdi mdi-plus"></i>&nbsp;Add LandType</button>
+                                                    </div>
+                                                </div>
+                                                <!--</div>-->
+                                                <div class="col-md-12">
+                                                    &nbsp;
+                                                    <table id="addLandType" class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Reg No</th>
+                                                                <th>Farmland Type</th>
+                                                                <th>Cultivation Type</th>
+                                                                <th>Ownership</th>
+                                                                <th>Topography</th>
+                                                                <th>Land Area</th>
+                                                                <th>Loc Lat</th>
+                                                                <th>Loc Lon</th>
+                                                                <th>Remarks</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_land_type">
+                                                            <tr ng-repeat="landType in landTypes track by $index"
+                                                                ng-show="landType.regNo != null">
+                                                                <td style="display:none;">{{ landType.sn }}</td>
+                                                                <td>{{ landType.regNo }}</td>
+                                                                <td>{{ landType.farmLandType }}</td>
+                                                                <td>{{ landType.cultivationType }}</td>
+                                                                <td>{{ landType.ownership }}</td>
+                                                                <td>{{ landType.topography }}</td>
+                                                                <td>{{ landType.landArea }}</td>
+                                                                <td>{{ landType.lat }}</td>
+                                                                <td>{{ landType.lon }}</td>
+                                                                <td>{{ landType.remarks }}</td>
+                                                                <td><a class="btn btn-xs delete-record"
+                                                                        ng-click="removeRow($index)"><i
+                                                                            class="fa fa-trash"
+                                                                            aria-hidden="true"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                            </div>
+                            <!--FARM-LAND ADD DETAILS END-->
+                            
+                            <div class="row pt-2">
+                                <div class="col-lg-12 text-right">
+                                    <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i class="mdi mdi-close"></i> CANCEL</button>
+                                    <button type="button" ng-if="landType.regNo == null" ng-click="addFarmLandDetail()" class="btn btn-success w-sm waves-effect waves-light"><i class="mdi mdi-content-save-all"></i> SAVE DETAILS</button>
+                                    <button type="button" ng-if="landType.regNo != null" ng-click="editFarmLandDetail()" class="btn btn-success w-sm waves-effect waves-light"><i class="mdi mdi-pen"></i> EDIT DETAILS</button>
+                                </div>                                        
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            
+            
+            <!--Edit Land Type Start-->
+            
+            <div id="editFarmlandDetails" class="modal fade bs-example-modal-xl" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editMyExtraLargeModalLabel">Farmland Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <form id="edit-new-farm-details" class="modal-body">
+                            <input type="hidden" name="REQ" value="setNewMrDetails" >
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group select2-sm">
+                                        <label class="form-label label-sm">Farmer Name : </label>
+<!--                                        <select class="form-control" ng-model="farmer.farmerDetail" name="farmerName" id="farmerName" required>
+                                            <option value="">Select Farmer</option>
+                                            <option ng-repeat="farmer in farmers" ng-selected="farmer.farmerDetail.farmerName" ng-value="farmer.farmerDetail ">{{ farmer.farmerDetail.farmerName }}</option>
+                                        </select>-->
+                                        <select class="form-control form-select" ng-model="farmLandEditData.farmerName" name="farmerName" id="farmerName" required="">
+                                            <option ng-repeat="farmerName in farmersNameList" value="{{farmerName}}">{{farmerName}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group select2-sm">
+                                        <label class="form-label label-sm">Reporting Office Name : </label>
+                                        <select class="form-control form-select" ng-model="farmLandEditData.reportingOffice" name="reporting_office" id="reportingOfficeName" required>
+                                            <option ng-repeat="reportingOfficeName in reportingOfficeNames" value="{{reportingOfficeName}}">{{ reportingOfficeName }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group select2-sm">
+                                        <label class="form-label label-sm">Reporting Field Officer : </label>
+                                        <select class="form-control form-select" ng-model="farmLandEditData.reportingFieldOfficer" name="reportingFieldOfficerName" id="reportingFieldOfficerName" required>
+                                            <option ng-repeat="reportingFieldOfficerName in reportingFieldOfficerNames" value="{{reportingFieldOfficerName}}">{{ reportingFieldOfficerName }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            
+                            <!--FARM-LAND ADD DETAILS START-->
+                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <small class="inputGroupTitle">Farm Land Details </small>
+                                                </div>
+                                <!--<div class="col-lg-12">-->
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">REG NO : </label>
+                                                        <input type="text" class="form-control" name="regNo"
+                                                            id="regNo" ng-model="regNo">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">FARMLAND TYPE : </label>
+                                                        <select class="form-control form-select" ng-model="farmLandType">
+                                                            <option value="">Select Office</option>
+                                                            <option ng-repeat="farmLandType in farmLandTypes" ng-value="farmLandType.dropdownValue">{{ farmLandType.dropdownText }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">CULTIVATION TYPE : </label>
+                                                        <select class="form-control form-select" ng-model="cultivationType">
+                                                            <option value="">Select Office</option>
+                                                            <option ng-repeat="cultivationType in cultivationTypes" ng-value="cultivationType.dropdownValue">{{ cultivationType.dropdownText }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">ownership : </label>
+                                                        <select class="form-control form-select" ng-model="ownership">
+                                                            <option value="">Select Office</option>
+                                                            <option ng-repeat="ownership in ownerships" ng-value="ownership.dropdownValue">{{ ownership.dropdownText }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">topography : </label>
+                                                        <select class="form-control form-select" ng-model="topography">
+                                                            <option value="">Select Office</option>
+                                                            <option ng-repeat="topography in topographys" ng-value="topography.dropdownValue">{{ topography.dropdownText }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">landArea : </label>
+                                                        <input type="text" class="form-control" name="landArea" id="landArea"
+                                                            ng-model="landArea">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">loc lat : </label>
+                                                        <input type="text" class="form-control" name="lat" id="lat"
+                                                            ng-model="lat">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">loc lon : </label>
+                                                        <input type="text" class="form-control" name="lon" id="lon"
+                                                            ng-model="lon">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <div class="form-group">
+                                                        <label class="form-label label-sm">remarks : </label>
+                                                        <input type="text" class="form-control" name="remarks" id="remarks"
+                                                            ng-model="remarks">
+                                                    </div>
+                                                </div>                                
+                                                <div class="col-sm-2">
+                                                    <div class="form-group">
+                                                        <span><br></span>
+                                                        <button type="button" class="btn btn-primary"
+                                                            ng-click="updateLandType()"><i
+                                                                class="mdi mdi-plus"></i>&nbsp;Update Land Type</button>
+                                                    </div>
+                                                </div>
+                                                <!--</div>-->
+                                                <div class="col-md-12">
+                                                    &nbsp;
+                                                    <table id="addLandType" class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Reg No</th>
+                                                                <th>Farmland Type</th>
+                                                                <th>Cultivation Type</th>
+                                                                <th>Ownership</th>
+                                                                <th>Topography</th>
+                                                                <th>Land Area</th>
+                                                                <th>Loc Lat</th>
+                                                                <th>Loc Lon</th>
+                                                                <th>Remarks</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_land_type">
+                                                            <tr ng-repeat="landType in landTypes track by $index"
+                                                                ng-show="landType.regNo != null">
+                                                                <td style="display:none;">{{ landType.sn }}</td>
+                                                                <td>{{ landType.regNo }} {{landType.index}}</td>
+                                                                <td>{{ landType.farmLandType }}</td>
+                                                                <td>{{ landType.cultivationType }}</td>
+                                                                <td>{{ landType.ownership }}</td>
+                                                                <td>{{ landType.topography }}</td>
+                                                                <td>{{ landType.landArea }}</td>
+                                                                <td>{{ landType.lat }}</td>
+                                                                <td>{{ landType.lon }}</td>
+                                                                <td>{{ landType.remarks }}</td>
+                                                                <td><a class="btn btn-xs delete-record"
+                                                                        ng-click="removeRow($index)"><i
+                                                                            class="fa fa-trash"
+                                                                            aria-hidden="true"></i></a>
+                                                                    
+                                                                    <a class="btn btn-xs edit-record"
+                                                                        ng-click="editLandTypes($index)"><i
+                                                                            class="fa fa-pencil-square-o"
+                                                                            aria-hidden="true"></i></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                            </div>
+                            <!--FARM-LAND ADD DETAILS END-->
+                            
+                            <div class="row pt-2">
+                                <div class="col-lg-12 text-right">
+                                    <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i class="mdi mdi-close"></i> CANCEL</button>
+                                    <button type="button" ng-click="editFarmLandDetail()" class="btn btn-success w-sm waves-effect waves-light"><i class="mdi mdi-pen"></i> EDIT DETAILS</button>
+                                </div>                                        
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Edit Land Type End-->
+            
+            <!-- Invalid Session Modal Start -->
+            <div class="modal fade" id="invalidSession" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="staticBackdropLabel">
+                                <span style="color: red;">Invalid Session</span>
+                            </h1>
+                        </div>
+                        <form id="updateUserPassword" class="modal-body">
+                            <div class="mb-1">
+                                <span>
+                                    <p>
+                                    <h2>
+                                        Unable to verify User session Data
+                                    </h2>
+                                    </p>
+                                    <p>
+                                    <h4>Please do login</h4>
+                                    </p>
+                                </span>
+                                <button type="button" class="btn btn-primary float-end"
+                                        ng-click="goToLogin()"><b>Login</b></button>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Invalid Session Modal End -->
+
+            <!-- Change Password Modal Start -->
+
+            <div class="modal fade" id="ChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Update Your Password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="updateUserPassword" class="modal-body" method="POST">
+                            <input type="hidden" name="REQ" value="setUserNewPassword">
+                            <input type="hidden" name="user_id" id="user_id" value="">
+
+                            <div class="mb-1">
+                                <label class="form-label label-sm">Current Password</label>
+                                <input class="form-control" type="password" name="c_password" id="c_password" value=""
+                                       required>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label label-sm">New Password</label>
+                                <input class="form-control" type="password" name="n_password" id="n_password" value=""
+                                       required>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label label-sm">Confirm Password</label>
+                                <input class="form-control" type="password" name="r_password" id="r_password" value=""
+                                       required>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
+                                    class="mdi mdi-close"></i> Close</button>
+                            <button type="button" id="subUpBtn" form="updateUserPassword" class="btn btn-success"><i
+                                    class="mdi mdi-check-decagram-outline"></i> UPDATE PASSWORD</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change Password Modal End -->
+        </div>
+
+    </body>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.form.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/simplebar.min.js"></script>
+    <script src="assets/js/waves.min.js"></script>
+    <script src="assets/js/feather.min.js"></script>
+    <script src="assets/js/pace.min.js"></script>
+    <script src="assets/js/apexcharts.min.js"></script>
+    <script src="assets/js/dashboard.init.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <!-- choices js -->
+    <script src="assets/js/choices.min.js"></script>
+    <script src="assets/js/select2.min.js"></script>
+    <!-- Required datatable js -->
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/dataTables.bootstrap4.min.js"></script>
+    <script src="assets/js/dataTables.responsive.min.js"></script>
+    <script src="assets/js/responsive.bootstrap4.min.js"></script>
+    <script src="assets/js/dataTables.buttons.min.js"></script>
+    <script src="assets/js/dataTables.select.min.js"></script>
+    <script src="assets/js/jszip.min.js"></script>
+    <script src="assets/js/buttons.html5.min.js"></script>
+    <script src="assets/js/buttons.colVis.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="assets/js/buttons.bootstrap4.min.js"></script>
+    <script src="assets/js/buttons.print.min.js"></script>
+    <!-- datepicker js -->
+    <script src="assets/js/flatpickr.min.js"></script>
+    <!-- Select 2 js -->
+    <script src="assets/js/toastr.min.js"></script>
+    <script src="assets/js/sweetalert2.min.js"></script>
+    <!-- Datatable init js -->
+    <script src="assets/js/dummy/datatables.init.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/angularjs/angular.min.js"></script>
+    <script src="assets/js/angularjs/dependency/ng-table.min.js"></script>
+    <script src="assets/js/angularjs/dependency/smart-table.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/locale/bootstrap-table-en-US.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/extensions/angular/bootstrap-table-angular.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="assets/js/angularjs/dependency/sweetalert.min.js"></script>
+    <script src="assets/js/angularjs/dependency/sweetAlert.js"></script>
+    <!-- Sweet Alert -->
+    <script src="assets/js/angularjs/app.js"></script>
+    <script src="assets/js/angularjs/service/jwtService.js"></script>
+    <script src="assets/js/angularjs/controller/farmLandController.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="assets/js/angularjs/dependency/bootstrap-datepicker.js"></script>
+</html>

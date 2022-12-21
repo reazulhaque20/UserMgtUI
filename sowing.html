@@ -1,0 +1,918 @@
+<!-- Header page -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Apex Purchase manager">
+        <meta name="author" content="Rifat Tanjir">
+        <link rel="shortcut icon" href="assets/images/favicon.png">
+        <title>Agro ERP System</title>
+
+        <!-- DataTables -->
+        <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="assets/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- choices css -->
+        <link href="assets/css/choices.min.css" rel="stylesheet" type="text/css" />
+        <!--<link href="assets/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />-->
+        <!-- datepicker css -->
+        <link rel="stylesheet" href="assets/css/flatpickr.min.css">
+        <!-- FullCalender Css -->
+        <link href="assets/js/vendors/fullcalendar/core/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/js/vendors/fullcalendar/daygrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/js/vendors/fullcalendar/bootstrap/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/js/vendors/fullcalendar/timegrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/toastr.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css" <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Select 2 Css -->
+        <link href="assets/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="assets/js/angularjs/dependency/sweet-alert.css" />
+        <!-- Custom Css-->
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+        <link href="assets/css/ng-table/ng-table.min.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body data-sidebar-size="lg" data-topbar="dark" ng-app="myApp" ng-controller="sowingCtrl"
+          ng-init="checkSessionData()">
+        <!-- <div class="main-content" ng-app="myApp" ng-controller="dashCtrl" ng-init="checkSessionData()">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row dashboard-page">
+                        Dashboard: {{ dashBoad }}<br>
+    
+                        User Token: {{ token }}<br>
+    
+                        User Name: {{ userName }}<br>
+                        User Role: {{ userRole }}<br>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div id="layout-wrapper">
+            <header id="page-topbar">
+                <div class="navbar-header">
+
+                    <!-- Top Left Logo & Short Menu -->
+
+                    <div class="d-flex">
+                        <div class="navbar-brand-box">
+                            <a href="dashboard" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-g-sm.png" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-g-sm.png" alt="" height="24"> <span
+                                        class="logo-txt">Agro ERP</span>
+                                </span>
+                            </a>
+                            <a href="dashboard" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="assets/images/agro_logo.png" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/agro_logo.png" alt="" height="24"> <span
+                                        class="logo-txt">AGRO-ERP</span>
+                                </span>
+                            </a>
+                        </div>
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                            <i class="mdi mdi-format-align-justify"></i>
+                        </button>
+                    </div>
+
+                    <!-- Top Left Logo & Short Menu -->
+
+                    <div class="d-flex">
+                        <div class="dropdown d-none d-sm-inline-block">
+                            <button type="button" class="btn header-item" id="mode-setting-btn">
+                                <i class="mdi mdi-lightbulb-on-outline"></i>
+                            </button>
+                        </div>
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon position-relative"
+                                id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge bg-danger rounded-pill">0</span>
+                            </button>
+                        </div> -->
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item right-bar-toggle me-2">
+                                <i class="mdi mdi-cog-transfer-outline"></i>
+                            </button>
+                        </div> -->
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item bg-soft-light border-start border-end"
+                                    id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ userName}}</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="javascript.void(0)" data-bs-toggle="modal"
+                                   data-bs-target="#ChangePassword"><i
+                                        class="mdi mdi-account-key-outline align-middle"></i> Change Password</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" ng-click="logout()"><i
+                                        class="mdi mdi-logout font-size-16 align-middle me-1"></i>
+                                    Logout</a>
+                                <!-- <form id="logOutForm" method="post" action="<%= root%>/UserController">
+                                    <input type="hidden" name="REQ" value="LogoutUser" />
+                                </form> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+            <div data-simplebar class="h-100">
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li>
+                            <a href="dashboard.html" class="disabled"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span
+                                    data-key="t-dashboard">Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cowboy-hat-outline"></i><span data-key="t-pages">Farmer/User
+                                    Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="farmer.html" data-key="t-starter-page">Farmers List</a></li>
+                                <li><a href="farmer.html" data-key="t-maintenance">Farmer Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-map-outline"></i><span
+                                    data-key="t-pages">Farmland Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="farm_land.html" data-key="t-starter-page">Farmland List</a></li>
+                                <li><a href="farm_land.html" data-key="t-maintenance">Farmland Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-handshake-outline"></i><span data-key="t-pages">Contract
+                                    Farming</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="contract.html" data-key="t-starter-page">Contracts List</a></li>
+                                <li><a href="contract.html" data-key="t-maintenance">Create Contract</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Planning</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="planning.html" data-key="t-starter-page">Planning List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Sowing</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="sowing.html" data-key="t-starter-page">Sowing List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-tractor"></i><span
+                                    data-key="t-pages">Production</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="#" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cart-plus"></i><span
+                                    data-key="t-pages">Procurement</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="#" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-warehouse"></i><span
+                                    data-key="t-pages">Warehouse</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="#" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-clipboard-search-outline"></i><span
+                                    data-key="t-pages">Monitoring</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="#" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-certificate-outline"></i><span
+                                    data-key="t-pages">Certifications</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="#" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-flask-plus-outline"></i><span data-key="t-pages">R&D &
+                                    Biotech</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="#" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-file-multiple-outline"></i><span
+                                    data-key="t-pages">MIS/Analytics</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="#" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="#" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cog-outline"></i><span
+                                    data-key="t-pages">Master Data</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="master_data/location.html" data-key="t-starter-page">Location
+                                        List</a></li>
+                                <li><a href="master_data/officeList.html">Reporting Office</a></li>
+                                <li><a href="master_data/officerList.html">Reporting Officer</a></li>
+                                <li><a href="master_data/divisionList.html" data-key="t-starter-page">Division
+                                        List</a></li>
+                                <li><a href="master_data/districtList.html">District List</a></li>
+                                <li><a href="master_data/upazillaList.html" data-key="t-starter-page">Upazila
+                                        List</a></li>
+                                <li><a href="master_data/unionList.html" data-key="t-starter-page">Union
+                                        List</a></li>
+                                <li><a href="master_data/dropDownList.html" data-key="t-starter-page">DropDown
+                                        List</a></li>
+                                <li><a href="master_data/buyer_list.html" data-key="t-starter-page">Buyer
+                                        List</a></li>
+                                <li><a href="master_data/crop_list.html">Crop List</a></li>
+                                <li><a href="master_data/cropVarietyDetail.html">Crop Variety</a></li>
+                                <li><a href="master_data/cropGradeList.html">Crop Grade</a></li>
+                                <li><a href="master_data/farmer_input_category.html">Farm Input Category</a>
+                                </li>
+                                <li><a href="master_data/season_list.html">Season List</a></li>
+                                <li><a href="master_data/supplierList.html">Supplier List</a></li>
+                                <li><a href="master_data/warehouseList.html">Warehouse List</a></li>
+                                <li><a href="master_data/zone_list.html">Zone List</a></li>
+                                <!--                                <li><a href="offices_list" data-key="t-maintenance">Office List</a></li>
+                                <li><a href="upazillas_lists" data-key="t-maintenance">Upazilla List</a></li>
+                                <li><a href="unions_list" data-key="t-maintenance">Union List</a></li>
+                                <li><a href="seasons_list" data-key="t-maintenance">Season List</a></li>
+                                <li><a href="doses_list" data-key="t-maintenance">Dose List</a></li>
+                                <li><a href="dose_uses" data-key="t-maintenance">Dose Uses List</a></li>-->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cog-outline"></i><span data-key="t-System Users">System
+                                    Users</span></a>
+                            <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                <li><a href="#" data-key="t-applied_users">Applied Users</a></li>
+                                <li><a href="users/users_list.html" data-key="t-users_list">Users List</a></li>
+                                <li><a href="#" data-key="t-user_groups">User Groups</a></li>
+                                <li><a href="#" data-key="t-menu_list">Menu List</a></li>
+                                <li><a href="#" data-key="t-menu_permission">Menu Permission</a></li>
+                                <li><a href="#" data-key="t-approval_permissions">Approval
+                                        Permission</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span data-key="t-multi-level">Extras</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="#" data-key="t-level-1-1">Calender</a></li>
+                                <li><a href="#" data-key="t-level-1-1">Icons</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <!-- ========== Left Sidebar End ========== -->
+
+            <!-- Main Content Start -->
+<!--        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">        
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Sowing Planning List</h4>
+                                </div>
+                                <div class="card-body">
+                                    <table id="sowing-details-list" class="table cus-datatable table-striped dt-responsive nowrap w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>LAND ID</th>
+                                                <th>TOTAL AREA</th>
+                                                <th>ADDRESS/LOCATION</th>
+                                                <th>OFFICE NAME</th>
+                                                <th>APO NAME</th>
+                                                <th>FARMER NAME</th>
+                                                <th>MOBILE NO</th>
+                                                <th>SEASON</th>
+                                                <th>CROP VARIETY</th>
+                                                <th>SOWING DATE</th>
+                                                <th>EST. HARVEST DATE</th>
+                                                <th>ACTION</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><a href="#">LND00001</a></td>
+                                                <td>10 DEC</td>
+                                                <td>Address of the Land</td>
+                                                <td>Rangpur Zonal Office</td>
+                                                <td>Name of the Officer</td>
+                                                <td>Name of the Farmer</td>
+                                                <td>01611111111</td>
+                                                <td>KHARIF II 2022</td>
+                                                <td>Potato Santana</td>
+                                                <td>25 APR 2022</td>
+                                                <td>25 APR 2022</td>
+                                                <td class=" dt-body-center">
+                                                    <button class="btn btn-soft-primary btn-sm" onclick="addFarmlandSeasonalPlanning('120')"><i class="mdi mdi-eye-outline"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+            
+<!--            <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Planning Farmland List</h4>
+                                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
+                                                data-bs-target="#addOrEditPlanningDetail" ng-click="addPlanningDetailClick()">Add
+                                            Planning Detail</button>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <table ng-table="tableParams" class="table" show-filter="true">
+                                            <tr ng-repeat="pD in $data">
+                                                <td align="center" data-title="'SN'">{{ (tableParams.page() - 1) *
+                                                                        tableParams.count() +
+                                                                        $index + 1}}</td>
+                                                <td align="center" data-title="'LAND'"
+                                                    filter="{ landId : 'text' }" sortable="landId">
+                                                    {{ pD.planningCode}}</td>
+                                                <td align="center" data-title="'TOTAL AREA'"
+                                                    filter="{ landId : 'text' }" sortable="landId">
+                                                    {{ pD.land.landName}}</td>
+                                                <td align="center" data-title="'LOCATION'"
+                                                    filter="{ contId: 'text' }" sortable="contId">
+                                                    {{ pD.contract.contractCode}}</td>
+                                                <td align="center" data-title="'OFFICE NAME'"
+                                                    filter="{ totalArea: 'text' }" sortable="totalArea">
+                                                    {{ pD.land.landSize}}</td>
+                                                <td align="center" data-title="'APO NAME'"
+                                                    filter="{ location: 'text' }" sortable="location">
+                                                    {{ pD.land.landLocation.locationName}}</td>
+                                                <td align="center" data-title="'FARMER NAME'"
+                                                    filter="{ officeName: 'text' }" sortable="officeName">
+                                                    {{ pD.office.officeName}}</td>
+                                                <td align="center" data-title="'MOBILE NO'"
+                                                    filter="{ apoName: 'text' }" sortable="apoName">
+                                                    {{ pD.officer.officerName}}</td>
+                                                <td align="center" data-title="'SEASON'"
+                                                    filter="{ farmerName: 'text' }" sortable="farmerName">
+                                                    {{ pD.farmer.farmerName}}</td>
+                                                <td align="center" data-title="'CROP VARIETY'"
+                                                    filter="{ nid: 'text' }" sortable="nid">
+                                                    {{ pD.farmer.nid}}</td>
+                                                <td align="center" data-title="'SOWING DATE'"
+                                                    filter="{ mobileNo: 'text' }" sortable="mobileNo">
+                                                    {{ pD.farmer.mobile}}</td>
+                                                <td align="center" data-title="'EST. HARVEST DATE'" 
+                                                    filter="{ mobileNo: 'text' }" sortable="mobileNo">
+                                                    {{ pD.farmer.mobile}}</td>
+                                                <td align="center" data-title="'Action'"><button type="button"
+                                                                                                 ng-click="editPlanningDetail(pD)" data-bs-toggle="modal"
+                                                                                                 data-bs-target="#addOrEditPlanningDetail"
+                                                                                                 class="btn btn-success">Edit</button>&nbsp;<button type="button"
+                                                                                                 class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Sowing List</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Sowing List</h4>
+                                        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
+                                                data-bs-target="#addOrEditSowingDetail" ng-click="addSowingDetailClick()">Add
+                                            Planning Detail</button>
+                                    </div>
+                                    <div class="card-body">
+
+                                        <table ng-table="tableParams" class="table" show-filter="true">
+                                            <tr ng-repeat="sD in $data">
+                                                <td align="center" data-title="'SN'">{{ (tableParams.page() - 1) *
+                                                                        tableParams.count() +
+                                                                        $index + 1}}</td>
+                                                <td align="center" data-title="'LOCATION'"
+                                                    filter="{ contId: 'text' }" sortable="contId">
+                                                    {{ sD.farmLandPlanning.farmer.farmerLocation.locationName}}</td>
+                                                <td align="center" data-title="'OFFICE NAME'"
+                                                    filter="{ totalArea: 'text' }" sortable="officeName">
+                                                    {{ sD.farmLandPlanning.farmer.officeName}}</td>
+                                                <td align="center" data-title="'APO NAME'"
+                                                    filter="{ location: 'text' }" sortable="location">
+                                                    {{ sD.farmLandPlanning.farmer.fieldOfficer}}</td>
+                                                <td align="center" data-title="'FARMER NAME'"
+                                                    filter="{ officeName: 'text' }" sortable="officeName">
+                                                    {{ sD.farmLandPlanning.farmer.farmerName}}</td>
+                                                <td align="center" data-title="'MOBILE NO'"
+                                                    filter="{ apoName: 'text' }" sortable="apoName">
+                                                    {{ sD.farmLandPlanning.farmer.mobile}}</td>
+                                                <td align="center" data-title="'SEASON'"
+                                                    filter="{ farmerName: 'text' }" sortable="farmerName">
+                                                    {{ sD.farmLandPlanning.season.seasonName}}</td>
+                                                <td align="center" data-title="'CROP VARIETY'"
+                                                    filter="{ nid: 'text' }" sortable="nid">
+                                                    {{ sD.cropVariety.varietyName}}</td>
+                                                <td align="center" data-title="'SOWING DATE'"
+                                                    filter="{ mobileNo: 'text' }" sortable="mobileNo">
+                                                    {{ sD.farmLandPlanning.sowingDate}}</td>
+                                                <td align="center" data-title="'EST. HARVEST DATE'" 
+                                                    filter="{ mobileNo: 'text' }" sortable="mobileNo">
+                                                    {{ sD.farmLandPlanning.estHarvestDate}}</td>
+                                                <td align="center" data-title="'Action'" ng-show="false"><button type="button"
+                                                                                                 ng-click="editSowingDetail(sD)" data-bs-toggle="modal"
+                                                                                                 data-bs-target="#addOrEditSowingDetail"
+                                                                                                 class="btn btn-success">Edit</button>&nbsp;<button type="button"
+                                                                                                 class="btn btn-danger">Delete</button></td>
+                                            </tr>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end row-->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- end main content-->
+
+            <!--  Extra Large modal example -->
+            
+             <div id="addOrEditSowingDetail" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel" ng-if="!sw.id">Add Sowing Details </h5>
+                            <h5 class="modal-title" id="staticBackdropLabel" ng-if="sw.id">Update Sowing Details </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form class="modal-body" id="AddNewProjectMasterDetails">
+                            <div class="row">
+
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group select2-sm">
+                                                <label class="form-label label-sm">Farmer Name : </label>
+                                                <select class="form-control form-select" name="farmer" ng-model="sw.farmer"  required>
+                                                    <option value="">Select Farmer Name</option>
+                                                    <option ng-repeat="farmer in farmerList" ng-value="farmer">{{farmer.farmerName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group select2-sm">
+                                                <label class="form-label label-sm">Farm Name : </label>
+                                                <select class="form-control GlobalSelect" name="farmDetail" required ng-model="sw.farm">
+                                                    <option value="">Select Farm</option>
+                                                    <option ng-repeat="farmDetail in farmDetailList" ng-value="farmDetail">{{farmDetail.farmName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group select2-sm">
+                                                <label class="form-label label-sm">Season Name : </label>
+                                                <select class="form-control form-select" required ng-model="sw.season">
+                                                    <option value="">Select Season</option>
+                                                    <option ng-repeat="season in seasonList" ng-value="season">{{season.seasonName}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pt-0">
+                                        <div class="col-md-12">
+                                            <small class="inputGroupTitle-sm">Farm Crop Informations </small>
+                                        </div>
+<!--                                        <table id="farm-crop-info-details" class="table table-striped cus-default-table mb-0">
+                                            <thead class="table-light">
+                                               <tr>
+                                                  <th style="width: 2%;">SN</th>
+                                                  <th style="width: 10%;">CROP TYPE</th>
+                                                  <th style="width: 10%;">CROP NAME</th>
+                                                  <th style="width: 10%;">VARIETY</th>
+                                                  <th style="width: 12%;">REMARKS</th>
+                                                  <th width="3%" class="last-th">
+                                                    <button type="button" class="btn btn-soft-success btn-sm" onclick="addRow('farm-crop-info-details')"><i class="mdi mdi-plus"></i></button>
+                                                  </th>
+                                               </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><small>1</small></td>
+                                                    <td class="select2-sm">
+                                                        <select class="form-control GlobalSelect" name="department_name" style="max-width:100%;">
+                                                            <option value='Main Crop'>Main Crop</option>
+                                                            <option value='Inter Crop'>Inter Crop</option>
+                                                            <option value='Border Crop'>Border Crop</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="select2-sm">
+                                                        <select class="form-control GlobalSelect" name="product_code" style="max-width:100%;">
+                                                            <option value='POTATO'>POTATO</option>
+                                                            <option value='RICE'>RICE</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="select2-sm">
+                                                        <select class="form-control GlobalSelect" name="product_code" style="max-width:100%;">
+                                                            <option value='Santana'>Santana</option>
+                                                            <option value='Diamont'>Diamont</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><input class="form-control input-sm default" type="text" name="remarks" value="N/A"></td>
+                                                    <td class="last-td">
+                                                        <button type="button" class="btn btn-soft-danger btn-sm" onclick="delRow(this,'farm-crop-info-details')" title="Delete Item"><i class="mdi mdi-trash-can-outline"></i></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>-->
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="form-label label-sm">CROP : </label>
+            <select class="form-control form-select" ng-model="ci.crop" ng-change="loadCropsVarietyByCropName(ci.crop.cropName)">
+                <option value="">Select a Crop</option>
+                <option ng-repeat="crop in cropList" ng-value="crop">{{crop.cropName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="form-label label-sm">CROP TYPE: </label>
+            <select class="form-control form-select" ng-model="cropType">
+                <option value="">Select a Crop Type</option>
+                <option ng-value="Main Crop">Main Crop</option>
+                <option ng-value="Inter Crop">Inter Crop</option>
+                <option ng-value="Border Crop">Border Crop</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="form-label label-sm">CROP VARIETY : </label>
+            <select class="form-control form-select" ng-model="ci.cropVariety">
+                <option value="">Select a Crop Variety</option>
+                <option ng-repeat="cv in cropVarietyList" ng-value="cv">{{cv.varietyName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label class="form-label label-sm">REMARKS : </label>
+            <input class="form-control" type="text" ng-model="ci.remarks" >
+        </div>
+    </div>
+    
+    <div class="col-md-2">
+        <div class="form-group">
+            <span><br></span>
+            <button type="button" class="btn btn-primary"
+                    ng-click="addCropInfo(ci, cropType)"><i
+                    class="glyphicon glyphicon-plus"></i>&nbsp;Add
+                </button>
+        </div>
+    </div>
+    
+    <br> <hr>
+    
+    <table id="addFamilyMember" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+
+                                                                    <th>Crop</th>
+                                                                    <th>Crop Type</th>
+                                                                    <th>Crop Variety</th>
+                                                                    <th>Remarks</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tbl_family_member">
+                                                                
+                                                                <tr ng-repeat="cI in cropInfoList track by $index"
+                                                                    ng-show="cI.crop.cropName != null">
+                                                                    <td style="display:none;">{{ cI.id}}</td>
+                                                                    <td>{{ cI.crop.cropName}}</td>
+                                                                    <td>{{ cI.cropType}}</td>
+                                                                    <td>{{ cI.cropVariety.varietyName}}</td>
+                                                                    <td>{{ cI.remarks }}</td>
+                                                                    <td><a class="btn btn-xs delete-record"
+                                                                           ng-click="removeRow($index)"><i
+                                                                                class="fa fa-trash"
+                                                                                aria-hidden="true"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+    
+</div>
+
+                                        <div class="col-md-12">
+                                            <small class="inputGroupTitle-sm">Farm Other Informations </small>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group select2-sm">
+                                                    <label class="form-label label-sm">Date of Sowing : </label>
+                                                    <input class="form-control input-sm default" type="date" name="sowingDate" id="sowingDate" required ng-model="sw.sowingDate">
+                                                    <script type="text/javascript">
+                                                            $("#sowingDate").datepicker({
+                                                                format: "yyyy-mm-dd",
+                                                            });
+                                                        </script>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group select2-sm">
+                                                    <label class="form-label label-sm">Seed Source : </label>
+                                                    <select class="form-control form-select" name="seedSource" id="" required ng-model="sw.seedSource">
+                                                        <option value="">Select Source</option>
+                                                        <option value="Own">Own</option>
+                                                        <option value="Warehouse">Warehouse</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group select2-sm">
+                                                    <label class="form-label label-sm">Seed Qty Used(gms) : </label>
+                                                    <input class="form-control input-sm default" type="text" name="seedQty" required ng-model="sw.seedQty">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group select2-sm">
+                                                    <label class="form-label label-sm">Estimated Yield(Kgs) : </label>
+                                                    <input class="form-control input-sm default" type="text" required ng-model="sw.estYield">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group select2-sm">
+                                                    <label class="form-label label-sm">Estimated Purchase(Kgs) : </label>
+                                                    <input class="form-control input-sm default" type="text" name="remarks" required ng-model="sw.estPurchase">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group select2-sm">
+                                                    <label class="form-label label-sm">Estimated Harvest Date : </label>
+                                                    <input class="form-control input-sm default" type="date" name="estHarvestDate" id="estHarvestDate" ng-model="sw.estHarvestDate">
+                                                </div>
+                                                <script type="text/javascript">
+                                                            $("#estHarvestDate").datepicker({
+                                                                format: "yyyy-mm-dd",
+                                                            });
+                                                        </script>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group select2-sm">
+                                                    <label class="form-label label-sm">Row to Row Spacing(Inch) : </label>
+                                                    <input class="form-control input-sm default" type="text" name="remarks" ng-model="sw.rrSpacing" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group select2-sm">
+                                                    <label class="form-label label-sm">Tuber to Tuber Spacing(Inch) : </label>
+                                                    <input class="form-control input-sm default" type="text" name="remarks" ng-model="sw.ttSpacing" >
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4" ng-if="sw.id">
+                                                <div class="form-group select2-sm">
+                                                    <label class="form-label label-sm">Status : </label>
+                                                    <select class="form-control form-select" ng-model="sw.status">
+                                                        <option value="">Select a status</option>
+                                                        <option value="active">Active</option>
+                                                        <option value="inActive">InActive</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer pt-4">
+                            <div class="col-lg-12 text-right">
+                                <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
+                                        class="mdi mdi-close"></i> Close</button>
+                                <button type="button" class="btn btn-success" ng-if="!sw.id"
+                                        ng-click="addSowingDetail(sw)"><i class="mdi mdi-check-decagram-outline"></i> ADD
+                                   SOWING DETAIL</button>
+                                <button type="button" class="btn btn-success" ng-click="updateFarmLandPlanning(sw)"
+                                        ng-if="sw.id"><i class="mdi mdi-check-decagram-outline"></i> UPDATE
+                                    SOWING DETAIL</button>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            
+<!--            Modal END-->
+        </div>
+
+        <!-- Invalid Session Modal -->
+        <div class="modal fade" id="invalidSession" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+             role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title" id="staticBackdropLabel">
+                            <p style="color: red;">Invalid Session</p>
+                        </h1>
+                    </div>
+                    <form id="updateUserPassword" class="modal-body">
+                        <div class="mb-1">
+                            <span>
+                                <p>
+                                <h2>
+                                    Unable to verify User session Data
+                                </h2>
+                                </p>
+                                <p>
+                                <h4>Please do login</h4>
+                                </p>
+                            </span>
+                            <button type="button" class="btn btn-primary float-end"
+                                    ng-click="goToLogin()"><b>Login</b></button>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Invalid Session Modal -->
+
+        <!-- Change Password Modal Start -->
+
+        <div class="modal fade" id="ChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+             role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Update Your Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="updateUserPassword" class="modal-body" method="POST" action="UserController">
+                        <input type="hidden" name="REQ" value="setUserNewPassword">
+                        <input type="hidden" name="user_id" id="user_id" value="">
+
+                        <div class="mb-1">
+                            <label class="form-label label-sm">Current Password</label>
+                            <input class="form-control" type="password" name="c_password" id="c_password" value="" required>
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label label-sm">New Password</label>
+                            <input class="form-control" type="password" name="n_password" id="n_password" value="" required>
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label label-sm">Confirm Password</label>
+                            <input class="form-control" type="password" name="r_password" id="r_password" value="" required>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
+                                class="mdi mdi-close"></i> Close</button>
+                        <button type="submit" id="subUpBtn" form="updateUserPassword" class="btn btn-success"><i
+                                class="mdi mdi-check-decagram-outline"></i> UPDATE PASSWORD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Change Password Modal End -->
+    </div>
+</body>
+
+<!-- end main content-->
+<!-- END layout-wrapper -->
+
+<!-- Footer page -->
+<!-- Footer Libraries page -->
+</body>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.form.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/metisMenu.min.js"></script>
+<script src="assets/js/simplebar.min.js"></script>
+<script src="assets/js/waves.min.js"></script>
+<script src="assets/js/feather.min.js"></script>
+<script src="assets/js/pace.min.js"></script>
+<script src="assets/js/apexcharts.min.js"></script>
+<script src="assets/js/dashboard.init.js"></script>
+<script src="assets/js/angular.min.js"></script>
+<!-- choices js -->
+<script src="assets/js/choices.min.js"></script>
+<script src="assets/js/select2.min.js"></script>
+<!-- Required datatable js -->
+<script src="assets/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/dataTables.bootstrap4.min.js"></script>
+<script src="assets/js/dataTables.responsive.min.js"></script>
+<script src="assets/js/responsive.bootstrap4.min.js"></script>
+<script src="assets/js/dataTables.buttons.min.js"></script>
+<script src="assets/js/dataTables.select.min.js"></script>
+<script src="assets/js/jszip.min.js"></script>
+<script src="assets/js/buttons.html5.min.js"></script>
+<script src="assets/js/buttons.colVis.min.js"></script>
+<!-- Buttons examples -->
+<script src="assets/js/buttons.bootstrap4.min.js"></script>
+<script src="assets/js/buttons.print.min.js"></script>
+<!-- datepicker js -->
+<script src="assets/js/flatpickr.min.js"></script>
+<!-- Select 2 js -->
+<script src="assets/js/toastr.min.js"></script>
+<script src="assets/js/sweetalert2.min.js"></script>
+<!-- Datatable init js -->
+<script src="assets/js/dummy/datatables.init.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/angularjs/angular.min.js"></script>
+<script src="assets/js/angularjs/dependency/ng-table.min.js"></script>
+<script src="assets/js/angularjs/dependency/smart-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/locale/bootstrap-table-en-US.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/extensions/angular/bootstrap-table-angular.min.js"></script>
+<!-- Sweet Alert -->
+<script src="assets/js/angularjs/dependency/sweetalert.min.js"></script>
+<script src="assets/js/angularjs/dependency/sweetAlert.js"></script>
+<!-- Sweet Alert -->
+<script src="assets/js/angularjs/app.js"></script>
+<script src="assets/js/angularjs/service/jwtService.js"></script>
+<script src="assets/js/angularjs/controller/sowingController.js"></script>
+
+</html>

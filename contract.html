@@ -1,0 +1,926 @@
+<!-- Header page -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Apex Purchase manager">
+        <meta name="author" content="Rifat Tanjir">
+        <link rel="shortcut icon" href="assets/images/favicon.png">
+        <title>Agro ERP System</title>
+
+        <!-- DataTables -->
+        <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <!-- Responsive datatable examples -->
+        <link href="assets/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- choices css -->
+        <link href="assets/css/choices.min.css" rel="stylesheet" type="text/css" />
+        <!--<link href="assets/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />-->
+        <!-- datepicker css -->
+        <link rel="stylesheet" href="assets/css/flatpickr.min.css">
+        <!-- FullCalender Css -->
+        <link href="assets/js/vendors/fullcalendar/core/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/js/vendors/fullcalendar/daygrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/js/vendors/fullcalendar/bootstrap/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/js/vendors/fullcalendar/timegrid/main.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/toastr.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css" <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Select 2 Css -->
+        <link href="assets/css/select2.min.css" rel="stylesheet" type="text/css" />
+        <link href="assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="assets/js/angularjs/dependency/sweet-alert.css" />
+        <!-- Custom Css-->
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+        <link href="assets/css/ng-table/ng-table.min.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body data-sidebar-size="lg" data-topbar="dark" ng-app="myApp" ng-controller="contractCtrl"
+          ng-init="checkSessionData()">
+        <!-- <div class="main-content" ng-app="myApp" ng-controller="dashCtrl" ng-init="checkSessionData()">
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row dashboard-page">
+                        Dashboard: {{ dashBoad }}<br>
+    
+                        User Token: {{ token }}<br>
+    
+                        User Name: {{ userName }}<br>
+                        User Role: {{ userRole }}<br>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div id="layout-wrapper">
+            <header id="page-topbar">
+                <div class="navbar-header">
+
+                    <!-- Top Left Logo & Short Menu -->
+
+                    <div class="d-flex">
+                        <div class="navbar-brand-box">
+                            <a href="dashboard" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="assets/images/logo-g-sm.png" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/logo-g-sm.png" alt="" height="24"> <span
+                                        class="logo-txt">Agro ERP</span>
+                                </span>
+                            </a>
+                            <a href="dashboard" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="assets/images/agro_logo.png" alt="" height="24">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="assets/images/agro_logo.png" alt="" height="24"> <span
+                                        class="logo-txt">AGRO-ERP</span>
+                                </span>
+                            </a>
+                        </div>
+                        <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                            <i class="mdi mdi-format-align-justify"></i>
+                        </button>
+                    </div>
+
+                    <!-- Top Left Logo & Short Menu -->
+
+                    <div class="d-flex">
+                        <div class="dropdown d-none d-sm-inline-block">
+                            <button type="button" class="btn header-item" id="mode-setting-btn">
+                                <i class="mdi mdi-lightbulb-on-outline"></i>
+                            </button>
+                        </div>
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item noti-icon position-relative"
+                                id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge bg-danger rounded-pill">0</span>
+                            </button>
+                        </div> -->
+
+                        <!-- <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item right-bar-toggle me-2">
+                                <i class="mdi mdi-cog-transfer-outline"></i>
+                            </button>
+                        </div> -->
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item bg-soft-light border-start border-end"
+                                    id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium">{{ userName}}</span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="javascript.void(0)" data-bs-toggle="modal"
+                                   data-bs-target="#ChangePassword"><i
+                                        class="mdi mdi-account-key-outline align-middle"></i> Change Password</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" ng-click="logout()"><i
+                                        class="mdi mdi-logout font-size-16 align-middle me-1"></i>
+                                    Logout</a>
+                                <!-- <form id="logOutForm" method="post" action="<%= root%>/UserController">
+                                    <input type="hidden" name="REQ" value="LogoutUser" />
+                                </form> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="vertical-menu">
+            <div data-simplebar class="h-100">
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li>
+                            <a href="dashboard.html" class="disabled"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span
+                                    data-key="t-dashboard">Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cowboy-hat-outline"></i><span data-key="t-pages">Farmer/UserFsto
+                                    Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="farmer.html" data-key="t-starter-page">Farmers List</a></li>
+                                <li><a href="farmer.html" data-key="t-maintenance">Farmer Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-map-outline"></i><span
+                                    data-key="t-pages">Farmland Profile</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="farm_land.html" data-key="t-starter-page">Farmland List</a></li>
+                                <li><a href="farm_land.html" data-key="t-maintenance">Farmland Enrollment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-handshake-outline"></i><span data-key="t-pages">Contract
+                                    Farming</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="contract.html" data-key="t-starter-page">Contracts List</a></li>
+                                <li><a href="contract.html" data-key="t-maintenance">Create Contract</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Planning</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="planning.html" data-key="t-starter-page">Planning List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-clipboard-list"></i><span
+                                    data-key="t-pages">Sowing</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="sowing.html" data-key="t-starter-page">Sowing List</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-tractor"></i><span
+                                    data-key="t-pages">Production</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cart-plus"></i><span
+                                    data-key="t-pages">Procurement</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-warehouse"></i><span
+                                    data-key="t-pages">Warehouse</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-clipboard-search-outline"></i><span
+                                    data-key="t-pages">Monitoring</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-certificate-outline"></i><span
+                                    data-key="t-pages">Certifications</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-flask-plus-outline"></i><span data-key="t-pages">R&D &
+                                    Biotech</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-file-multiple-outline"></i><span
+                                    data-key="t-pages">MIS/Analytics</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">Starter Page</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i class="mdi mdi-cog-outline"></i><span
+                                    data-key="t-pages">Master Data</span></a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="master_data/location.html" data-key="t-starter-page">Location
+                                        List</a></li>
+                                <li><a href="master_data/officeList.html">Reporting Office</a></li>
+                                <li><a href="master_data/officerList.html">Reporting Officer</a></li>
+                                <li><a href="master_data/divisionList.html" data-key="t-starter-page">Division
+                                        List</a></li>
+                                <li><a href="master_data/districtList.html">District List</a></li>
+                                <li><a href="master_data/upazillaList.html" data-key="t-starter-page">Upazila
+                                        List</a></li>
+                                <li><a href="master_data/unionList.html" data-key="t-starter-page">Union
+                                        List</a></li>
+                                <li><a href="master_data/dropDownList.html" data-key="t-starter-page">DropDown
+                                        List</a></li>
+                                <li><a href="master_data/buyer_list.html" data-key="t-starter-page">Buyer
+                                        List</a></li>
+                                <li><a href="master_data/crop_list.html">Crop List</a></li>
+                                <li><a href="master_data/cropVarietyDetail.html">Crop Variety</a></li>
+                                <li><a href="master_data/cropGradeList.html">Crop Grade</a></li>
+                                <li><a href="master_data/farmer_input_category.html">Farm Input Category</a>
+                                </li>
+                                <li><a href="master_data/season_list.html">Season List</a></li>
+                                <li><a href="master_data/supplierList.html">Supplier List</a></li>
+                                <li><a href="master_data/warehouseList.html">Warehouse List</a></li>
+                                <li><a href="master_data/zone_list.html">Zone List</a></li>
+                                <!--                                <li><a href="offices_list" data-key="t-maintenance">Office List</a></li>
+                                <li><a href="upazillas_lists" data-key="t-maintenance">Upazilla List</a></li>
+                                <li><a href="unions_list" data-key="t-maintenance">Union List</a></li>
+                                <li><a href="seasons_list" data-key="t-maintenance">Season List</a></li>
+                                <li><a href="doses_list" data-key="t-maintenance">Dose List</a></li>
+                                <li><a href="dose_uses" data-key="t-maintenance">Dose Uses List</a></li>-->
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-account-cog-outline"></i><span data-key="t-System Users">System
+                                    Users</span></a>
+                            <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                <li><a href="applied_users" data-key="t-applied_users">Applied Users</a></li>
+                                <li><a href="users/users_list.html" data-key="t-users_list">Users List</a></li>
+                                <li><a href="user_groups" data-key="t-user_groups">User Groups</a></li>
+                                <li><a href="menu_list" data-key="t-menu_list">Menu List</a></li>
+                                <li><a href="menu_permission" data-key="t-menu_permission">Menu Permission</a></li>
+                                <li><a href="approval_permissions" data-key="t-approval_permissions">Approval
+                                        Permission</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow"><i
+                                    class="mdi mdi-monitor-dashboard"></i><span data-key="t-multi-level">Extras</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="calender" data-key="t-level-1-1">Calender</a></li>
+                                <li><a href="mdi" data-key="t-level-1-1">Icons</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <!-- ========== Left Sidebar End ========== -->
+
+            <!-- Main Content Start -->
+            <div class="main-content">
+                <div class="page-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">New Contract Details</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="setNewContractSeasonDetails" class="form-horizontal row">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div class="form-group select2-sm">
+                                                            <label class="form-label label-sm">Enter Contract Code: </label>
+                                                            <input class="form-control" type="text" ng-model="cd.contractCode">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group select2-sm">
+                                                            <label class="form-label label-sm">Select Farmer Name : </label>
+                                                            <select name="zone_name" id="farmer_name"
+                                                                    class="form-control form-select" required ng-model="farmer">
+                                                                <option value="">Select Farmer Name</option>
+                                                                <option ng-repeat="farmer in farmerList" ng-value="farmer">{{farmer.farmerName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group select2-sm">
+                                                            <label class="form-label label-sm">Reporting Office Name :
+                                                            </label>
+                                                            <select name="reporting_office" id="reporting_office"
+                                                                    class="form-control form-select" required ng-model="office">
+                                                                <option value="">Select Office Name</option>
+                                                                <option ng-repeat="office in officeList" ng-value="office">{{office.officeName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <!--                                                <div class="col-md-6">
+                                                        <div class="form-group select2-sm">
+                                                            <label class="form-label label-sm">Contract Seasons : </label>
+                                                            <select name="reporting_officer" id="reporting_officer" class="form-control GlobalSelect" required>
+                                                                <option value="">Select Seasons Name</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>-->
+                                                    <div class="col-md-3">
+                                                        <div class="form-group select2-sm">
+                                                            <label class="form-label label-sm">Reporting Field Officer :
+                                                            </label>
+                                                            <select name="reporting_officer" id="reporting_officer"
+                                                                    class="form-control form-select" required ng-model="officer">
+                                                                <option value="">Select Field Officer</option>
+                                                                <option ng-repeat="officer in officerList" ng-value="officer">{{officer.officerName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group select2-sm">
+                                                            <label class="form-label label-sm">Warehouse Name : </label>
+                                                            <select name="reporting_officer" id="warehouse_name"
+                                                                    class="form-control form-select" required ng-model="warehouse">
+                                                                <option value="">Select Warehouse</option>
+                                                                <option ng-repeat="warehouse in warehouseList" ng-value="warehouse">{{warehouse.warehouseName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!--                                                <div class="row mt-2">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <small class="inputGroupTitle-sm">Contract Season Details </small>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-12">
+                                                                                                        <table id="new-contract-crop-details" class="table table-bordered">
+                                                                                                            <thead>
+                                                                                                                <tr>
+                                                                                                                    <th width="3%">SN</th>
+                                                                                                                    <th width="10%">LAND ID</th>
+                                                                                                                    <th width="8%">LAND AREA</th>
+                                                                                                                    <th width="20%">SEASON NAME</th>
+                                                                                                                    <th width="20%">CROP NAME</th>
+                                                                                                                    <th width="20%">CROP VARIETY</th>
+                                                                                                                    <th width="5%"><a href="javascript:void()"
+                                                                                                                                      class="btn btn-outline-success btn-sm"
+                                                                                                                                      onclick="addRow('new-contract-crop-details')"><i
+                                                                                                                                class="mdi mdi-plus"></i></a></th>
+                                                                                                                </tr>
+                                                                                                            </thead>
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <td><small>1</small></td>
+                                                                                                                    <td><input type="text" class="form-control upper"
+                                                                                                                               name="member_name" value="LND0050" required
+                                                                                                                               readonly></td>
+                                                                                                                    <td><input type="text" class="form-control number"
+                                                                                                                               name="member_contact" value="30 DEC" readonly>
+                                                                                                                    </td>
+                                                                                                                    <td>
+                                                                                                                        <select name="reporting_office"
+                                                                                                                                class="form-control GlobalSelect SeasonName"
+                                                                                                                                style="min-width:100%; max-width:100%;"
+                                                                                                                                required>
+                                                                                                                            <option value="">Select Season</option>
+                                                                                                                            <option value="1">KHARIF II 2022</option>
+                                                                                                                            <option value="1">ROBI I 2022</option>
+                                                                                                                            <option value="1">ROBI II 2022</option>
+                                                                                                                        </select>
+                                                                                                                    </td>
+                                                                                                                    <td>
+                                                                                                                        <select name="reporting_office"
+                                                                                                                                class="form-control GlobalSelect CropName"
+                                                                                                                                style="min-width:100%; max-width:100%;"
+                                                                                                                                required>
+                                                                                                                            <option value="">Select Crop</option>
+                                                                                                                            <option value="1">POTATO </option>
+                                                                                                                            <option value="1">POTATO </option>
+                                                                                                                            <option value="1">POTATO </option>
+                                                                                                                        </select>
+                                                                                                                    </td>
+                                                                                                                    <td>
+                                                                                                                        <select name="reporting_office"
+                                                                                                                                class="form-control GlobalSelect VarietyName"
+                                                                                                                                style="min-width:100%; max-width:100%;"
+                                                                                                                                required>
+                                                                                                                            <option value="">Select Crop Variety</option>
+                                                                                                                            <option value="1">SANTANA</option>
+                                                                                                                            <option value="1">APEX</option>
+                                                                                                                            <option value="1">OTHERS</option>
+                                                                                                                        </select>
+                                                                                                                    </td>
+                                                                                                                    <td><a href="javascript:void()"
+                                                                                                                           class="btn btn-outline-danger btn-sm"
+                                                                                                                           onclick="delRow(this, 'new-contract-crop-details')"><i
+                                                                                                                                class="mdi mdi-minus"></i></a></td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                        </table>
+                                                                                                    </div>
+                                                                                                </div>-->
+
+                                                <!--Contract Season Details Start-->
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <small class="inputGroupTitle">Contract Season Details </small>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">LAND NAME: </label>
+                                                            <select class="form-control form-select" ng-model="land">
+                                                                <option value="">Select a Land</option>
+                                                                <option ng-repeat="land in landList" ng-value="land">{{land.landName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">LAND AREA : </label>
+                                                            <input type="text" class="form-control" name="landArea"
+                                                                   id="landArea" ng-model="land.landSize" required="" ng-disabled="true">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">SEASON NAME : </label>
+                                                            <select class="form-control form-select" ng-model="season">
+                                                                <option value="">Select a Season</option>
+                                                                <option ng-repeat="season in seasonList" ng-value="season">{{season.seasonName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">CROP NAME : </label>
+                                                            <select class="form-control form-select" ng-model="crop" ng-change="loadCropVarietyByCrop(crop)">
+                                                                <option value="">Select a Crop</option>
+                                                                <option ng-repeat="crop in cropList" ng-value="crop">{{crop.cropName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">CROP VARIETY : </label>
+                                                            <select class="form-control form-select" ng-model="cropVariety">
+                                                                <option value="">Select a Crop Variety</option>
+                                                                <option ng-repeat="cropVariety in cropVarietyList" ng-value="cropVariety">{{cropVariety.varietyName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <span><br></span>
+                                                            <button type="button" class="btn btn-primary"
+                                                                    ng-click="addContractSeasion(land, season, crop, cropVariety)"><i
+                                                                    class="glyphicon glyphicon-plus"></i>&nbsp;Add
+                                                                More</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        &nbsp;
+                                                        <table id="addContractSeasion" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Land Name</th>
+                                                                    <th>Land Area</th>
+                                                                    <th>Season Name</th>
+                                                                    <th>Crop Name</th>
+                                                                    <th>Crop Variety</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tbl_season_details">
+                                                                <tr ng-repeat="season in seasonDetails track by $index"
+                                                                    ng-show="season.id !== 0">
+                                                                    <td style="display:none;">{{ season.id}}</td>
+                                                                    <td>{{ season.landName}}</td>
+                                                                    <td>{{ season.landArea}}</td>
+                                                                    <td>{{ season.seasonName}}</td>
+                                                                    <td>{{ season.cropName}}</td>
+                                                                    <td>{{ season.cropVarietyName }}</td>
+                                                                    <td><a class="btn btn-xs delete-record"
+                                                                           ng-click="removeSeasonRow($index)"><i
+                                                                                class="fa fa-trash"
+                                                                                aria-hidden="true"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <!--Contract Season Details End-->
+<!--                                                <div class="row mt-2">
+                                                    <div class="col-md-12">
+                                                        <small class="inputGroupTitle-sm">Contract Input Details </small>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <table id="new-contract-input-details" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="3%">SN</th>
+                                                                    <th width="12%">INPUT CATEGORY</th>
+                                                                    <th width="15%">PRODUCT NAME</th>
+                                                                    <th width="9%">STOCK QTY</th>
+                                                                    <th width="7%">UNIT</th>
+                                                                    <th width="7%">PRICE</th>
+                                                                    <th width="12%">DISTRIBUTION QTY</th>
+                                                                    <th width="10%">SUB TOTAL</th>
+                                                                    <th width="5%"><a href="javascript:void()"
+                                                                                      class="btn btn-outline-success btn-sm"
+                                                                                      onclick="addRow('new-contract-input-details')"><i
+                                                                                class="mdi mdi-plus"></i></a></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><small>1</small></td>
+                                                                    <td>
+                                                                        <select name="reporting_office"
+                                                                                class="form-control GlobalSelect SeasonName"
+                                                                                style="min-width:100%; max-width:100%;"
+                                                                                required>
+                                                                            <option value="">Select Category</option>
+                                                                            <option value="1">Category 001</option>
+                                                                            <option value="1">Category 002</option>
+                                                                            <option value="1">Category 003</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="reporting_office"
+                                                                                class="form-control GlobalSelect CropName"
+                                                                                style="min-width:100%; max-width:100%;"
+                                                                                required>
+                                                                            <option value="">Select Crop</option>
+                                                                            <option value="1">POTATO </option>
+                                                                            <option value="1">POTATO </option>
+                                                                            <option value="1">POTATO </option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td><input type="text" class="form-control number"
+                                                                               name="member_contact" value=""></td>
+                                                                    <td><input type="text" class="form-control number"
+                                                                               name="member_contact" value=""></td>
+                                                                    <td><input type="text" class="form-control number"
+                                                                               name="member_contact" value=""></td>
+                                                                    <td><input type="text" class="form-control number"
+                                                                               name="member_contact" value=""></td>
+                                                                    <td><input type="text" class="form-control number"
+                                                                               name="member_contact" value=""></td>
+                                                                    <td><a href="javascript:void()"
+                                                                           class="btn btn-outline-danger btn-sm"
+                                                                           onclick="delRow(this, 'new-contract-input-details')"><i
+                                                                                class="mdi mdi-minus"></i></a></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>-->
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <small class="inputGroupTitle">Contract Input Details </small>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">INPUT CATEGORY: </label>
+                                                            <select class="form-control form-select" ng-model="inputCategory" ng-change="loadProductByCategory(inputCategory)">
+                                                                <option value="">Select a Input Category</option>
+                                                                <option ng-repeat="inputCategory in inputCategoryList" ng-value="inputCategory">{{inputCategory.inputCatName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">PRODUCT NAME : </label>
+<!--                                                            <input type="text" class="form-control" name="product"
+                                                                   id="product" ng-model="product" required="">-->
+                                                            <select class="form-control form-select" ng-model="product" ng-change="loadProductData(product)">
+                                                                <option value="">Select a Product</option>
+                                                                <option ng-repeat="product in productList" ng-value="product">{{product.productName}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">QTY : </label>
+                                                            <input type="text" class="form-control" ng-model="stock" ng-disabled="true">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">UNIT : </label>
+                                                            <input class="form-control" type="text" ng-model="unit" ng-disabled="true">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">PRICE : </label>
+                                                            <input class="form-control" type="number" ng-model="price" ng-value="0" ng-disabled="true">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">DISTRI. QTY : </label>
+                                                            <input class="form-control" type="text" ng-model="distribution" ng-change="calculateTotal()">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <div class="form-group">
+                                                            <label class="form-label label-sm">SUB TOTAL : </label>
+                                                            <input class="form-control" type="number" ng-model="total" ng-disabled="true">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <span><br></span>
+                                                            <button type="button" class="btn btn-primary"
+                                                                    ng-click="addContractInput(inputCategory, product, stock, unit, price, distribution, total)"><i
+                                                                    class="glyphicon glyphicon-plus"></i>&nbsp;Add
+                                                                More</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        &nbsp;
+                                                        <table id="addContractSeasion" class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Input Category</th>
+                                                                    <th>Product Name</th>
+                                                                    <th>Qty</th>
+                                                                    <th>Unit</th>
+                                                                    <th>Price</th>
+                                                                    <th>Distribution Qty</th>
+                                                                    <th>Sub Total</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="tbl_season_details">
+                                                                <tr ng-repeat="iDetail in inputDetails track by $index"
+                                                                    ng-show="iDetail.id !== 0">
+                                                                    <td style="display:none;">{{ iDetail.id}}</td>
+                                                                    <td>{{ iDetail.inputCatName}}</td>
+                                                                    <td>{{ iDetail.productName}}</td>
+                                                                    <td>{{ iDetail.stockQty }}</td>
+                                                                    <td>{{ iDetail.unitProduct}}</td>
+                                                                    <td>{{ iDetail.priceProduct}}</td>
+                                                                    <td>{{ iDetail.distriQty }}</td>
+                                                                    <td>{{ iDetail.subTotal }}</td>
+                                                                    <td><a class="btn btn-xs delete-record"
+                                                                           ng-click="removeInputDetailRow($index)"><i
+                                                                                class="fa fa-trash"
+                                                                                aria-hidden="true"></i>DEL</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-2 mb-3">
+                                                    <div class="col-md-12">
+                                                        <small class="inputGroupTitle-sm">Payment Details </small>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <div class="form-group select2-sm">
+                                                                    <label class="form-label label-sm">Total Amount :
+                                                                    </label>
+                                                                    <input type="text" class="form-control number"
+                                                                           name="member_contact" ng-model="pd.totalAmount">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group select2-sm">
+                                                                    <label class="form-label label-sm">Payment Amount :
+                                                                    </label>
+                                                                    <input type="text" class="form-control number"
+                                                                           name="member_contact" ng-model="pd.paymentAmount">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group select2-sm">
+                                                                    <label class="form-label label-sm">Loan Amount :
+                                                                    </label>
+                                                                    <input type="text" class="form-control number"
+                                                                           name="member_contact" ng-model="pd.loanAmount">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group select2-sm">
+                                                                    <label class="form-label label-sm">Total Due Amount :
+                                                                    </label>
+                                                                    <input type="text" class="form-control number"
+                                                                           name="member_contact" ng-model="pd.totalDueAmount">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12 text-right">
+                                                    <button type="button" class="btn btn-soft-danger"
+                                                            data-bs-dismiss="modal"><i class="mdi mdi-close"></i>
+                                                        CANCEL</button>
+                                                    <button type="button" ng-click="addContractSeason()"
+                                                            class="btn btn-success w-sm waves-effect waves-light"><i
+                                                            class="mdi mdi-content-save-all"></i> SAVE DETAILS</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- end cardaa -->
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+            </div>
+            <!-- Main Content End -->
+
+            <!-- Invalid Session Modal -->
+            <div class="modal fade" id="invalidSession" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title" id="staticBackdropLabel">
+                                <p style="color: red;">Invalid Session</p>
+                            </h1>
+                        </div>
+                        <form id="updateUserPassword" class="modal-body">
+                            <div class="mb-1">
+                                <span>
+                                    <p>
+                                    <h2>
+                                        Unable to verify User session Data
+                                    </h2>
+                                    </p>
+                                    <p>
+                                    <h4>Please do login</h4>
+                                    </p>
+                                </span>
+                                <button type="button" class="btn btn-primary float-end"
+                                        ng-click="goToLogin()"><b>Login</b></button>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Invalid Session Modal -->
+
+            <!-- Change Password Modal Start -->
+
+            <div class="modal fade" id="ChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Update Your Password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form id="updateUserPassword" class="modal-body" method="POST" action="UserController">
+                            <input type="hidden" name="REQ" value="setUserNewPassword">
+                            <input type="hidden" name="user_id" id="user_id" value="">
+
+                            <div class="mb-1">
+                                <label class="form-label label-sm">Current Password</label>
+                                <input class="form-control" type="password" name="c_password" id="c_password" value=""
+                                       required>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label label-sm">New Password</label>
+                                <input class="form-control" type="password" name="n_password" id="n_password" value=""
+                                       required>
+                            </div>
+                            <div class="mb-1">
+                                <label class="form-label label-sm">Confirm Password</label>
+                                <input class="form-control" type="password" name="r_password" id="r_password" value=""
+                                       required>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
+                                    class="mdi mdi-close"></i> Close</button>
+                            <button type="submit" id="subUpBtn" form="updateUserPassword" class="btn btn-success"><i
+                                    class="mdi mdi-check-decagram-outline"></i> UPDATE PASSWORD</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Change Password Modal End -->
+        </div>
+    </body>
+
+    <!-- end main content-->
+    <!-- END layout-wrapper -->
+
+    <!-- Footer page -->
+    <!-- Footer Libraries page -->
+</body>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.form.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/metisMenu.min.js"></script>
+<script src="assets/js/simplebar.min.js"></script>
+<script src="assets/js/waves.min.js"></script>
+<script src="assets/js/feather.min.js"></script>
+<script src="assets/js/pace.min.js"></script>
+<script src="assets/js/apexcharts.min.js"></script>
+<script src="assets/js/dashboard.init.js"></script>
+<script src="assets/js/angular.min.js"></script>
+<!-- choices js -->
+<script src="assets/js/choices.min.js"></script>
+<script src="assets/js/select2.min.js"></script>
+<!-- Required datatable js -->
+<script src="assets/js/jquery.dataTables.min.js"></script>
+<script src="assets/js/dataTables.bootstrap4.min.js"></script>
+<script src="assets/js/dataTables.responsive.min.js"></script>
+<script src="assets/js/responsive.bootstrap4.min.js"></script>
+<script src="assets/js/dataTables.buttons.min.js"></script>
+<script src="assets/js/dataTables.select.min.js"></script>
+<script src="assets/js/jszip.min.js"></script>
+<script src="assets/js/buttons.html5.min.js"></script>
+<script src="assets/js/buttons.colVis.min.js"></script>
+<!-- Buttons examples -->
+<script src="assets/js/buttons.bootstrap4.min.js"></script>
+<script src="assets/js/buttons.print.min.js"></script>
+<!-- datepicker js -->
+<script src="assets/js/flatpickr.min.js"></script>
+<!-- Select 2 js -->
+<script src="assets/js/toastr.min.js"></script>
+<script src="assets/js/sweetalert2.min.js"></script>
+<!-- Datatable init js -->
+<script src="assets/js/dummy/datatables.init.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/angularjs/angular.min.js"></script>
+<script src="assets/js/angularjs/dependency/ng-table.min.js"></script>
+<script src="assets/js/angularjs/dependency/smart-table.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/locale/bootstrap-table-en-US.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/extensions/angular/bootstrap-table-angular.min.js"></script>
+<!-- Sweet Alert -->
+<script src="assets/js/angularjs/dependency/sweetalert.min.js"></script>
+<script src="assets/js/angularjs/dependency/sweetAlert.js"></script>
+<!-- Sweet Alert -->
+<script src="assets/js/angularjs/app.js"></script>
+<script src="assets/js/angularjs/service/jwtService.js"></script>
+<script src="assets/js/angularjs/controller/contractController.js"></script>
+
+</html>

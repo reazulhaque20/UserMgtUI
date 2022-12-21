@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Apex Testing Lab Project">
+    <meta name="author" content="Rifat Tanjir">
+    <link rel="shortcut icon" href="../assets/images/favicon.ico">
+    <title>Login:Agro ERP</title>
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/toastr.min.css" rel="stylesheet">
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="assets/js/angularjs/dependency/sweet-alert.css" />
+    <!-- Custom Css-->
+    <link href="assets/css/style.css" id="app-style" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="loginPage" ng-app="myApp" ng-controller="loginCtrl">
+    <!-- <div id="loader_holder">
+        <img src="../assets/images/loader_bar.gif" alt="Loading..." />
+    </div> -->
+    <div class="auth-page">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-xxl-8 col-lg-8 col-md-8 login-page-right">
+                    <div class="auth-bg">
+                        <div class="bg-overlay bg-primary"></div>
+                        <div class="brandName">
+                            <h2>AGRO-ERP</h2>
+                            <div class="both"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-4 col-lg-4 col-md-4">
+                    <div class="auth-full-page-content d-flex p-sm-5 p-4">
+                        <div class="w-100">
+                            <div class="d-flex flex-column h-100">
+                                <div class="mb-md-2 text-center">
+                                    <a href="index.html" class="d-block auth-logo">
+                                        <img src="assets/images/logo_ahl.png" alt="" height="70">
+                                    </a>
+                                </div>
+                                <div class="auth-content">
+                                    <div class="text-center">
+                                        <h5 class="mb-0">Welcome Back !</h5>
+                                        <p class="text-muted mt-2">Sign in to continue to Agri-Science App.</p>
+                                    </div>
+                                    <form id="LoginForm" class="custom-form mt-4 pt-2" method="POST">
+                                        <input type="hidden" class="form-control" name="REQ" value="setUserLogin">
+                                        <div class="mb-3">
+                                            <label class="form-label">USER ID</label>
+                                            <input type="text" class="form-control number" name="userName" autofocus=""
+                                                ng-model="user.userName" placeholder="Enter userid">
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-start">
+                                                <div class="flex-grow-1">
+                                                    <label class="form-label">PASSWORD</label>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <div class="">
+                                                        <a href="forgot_password" class="text-muted">Forgot
+                                                            password?</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-group auth-pass-inputgroup">
+                                                <input type="password" class="form-control" name="Password"
+                                                    ng-model="user.password" placeholder="Enter password"
+                                                    aria-label="Password" aria-describedby="password-addon">
+                                                <button class="btn btn-light shadow-none ms-0 btn-sm" type="button"
+                                                    id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="remember-check">
+                                                    <label class="form-check-label" for="remember-check">
+                                                        Remember me
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="alert alert-danger alert-dismissible fade show  mb-4 mt-4 errMsg"
+                                            role="alert">
+                                            <i class="mdi mdi-alert-circle-outline me-2"></i><span></span><button
+                                                type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                        </div> -->
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary w-100 waves-effect waves-light"
+                                                ng-click="doLogin()" type="submit">Log In</button>
+                                        </div>
+                                    </form>
+
+                                    <div class="mt-2 text-center">
+                                        <p class="text-muted mb-0">Don't have an account ? <a href="register.html"
+                                                class="text-primary fw-semibold"> Signup now </a> </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend Server Error Modal -->
+                <div class="row">
+                    <div class="modal fade" id="serverErrorModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title" id="staticBackdropLabel">
+                                        <p style="color: red;">Server Not Responding</p>
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form id="updateUserPassword" class="modal-body">
+                                    <div class="mb-1">
+                                        <span>
+                                            <p>
+                                            <h2>
+                                                Server Error
+                                            </h2>
+                                            </p>
+                                            <p>
+                                            <h4>Server Not Responding</h4>
+                                            </p>
+                                        </span>
+                                        <button type="button" class="btn btn-soft-danger" data-bs-dismiss="modal"><i
+                                                class="mdi mdi-close"></i> Close</button>
+                                    </div>
+                                </form>
+                                <div class="modal-footer">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Backend Server Error Modal -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/simplebar.min.js"></script>
+    <script src="assets/js/waves.min.js"></script>
+    <script src="assets/js/toastr.min.js"></script>
+    <script src="assets/js/angularjs/angular.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>-->
+    <script src="assets/js/angularjs/dependency/ng-table.min.js"></script>
+    <script src="assets/js/angularjs/dependency/smart-table.min.js"></script>
+    <script src="assets//js/angularjs/dependency/angular-route.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/locale/bootstrap-table-en-US.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/extensions/angular/bootstrap-table-angular.min.js"></script>
+    <!-- Sweet Alert -->
+    <script src="assets/js/angularjs/dependency/sweetalert.min.js"></script>
+    <script src="assets/js/angularjs/dependency/sweetAlert.js"></script>
+    <!-- Sweet Alert -->
+    <script src="assets/js/angularjs/app.js"></script>
+    <script src="assets/js/angularjs/controller/loginController.js"></script>
+    <!-- password addon init -->
+    <script src="assets/js/dummy/pass-addon.init.js"></script>
+    <script>
+        // $(document).ready(function () {
+        //     $(".errMsg").hide();
+        //     $("#loader_holder").hide();
+
+        //     $('input.number').keypress(function (key) {
+        //         if ((key.charCode < 48 || key.charCode > 57) && (key.charCode !== 45) && (key.charCode !== 32) && (key.charCode !== 0)) return false;
+        //     });
+        // });
+
+        // $('input.upper').keyup(function () {
+        //     this.value = this.value.toLocaleUpperCase();
+        // });
+
+        // $('#LoginForm').on('submit', function (e) {
+        //     e.preventDefault();
+        //     $("#loader_holder").show();
+        //     var frm = $('#LoginForm');
+        //     $.ajax({
+        //         url: "UserController",
+        //         type: "POST",
+        //         data: frm.serialize(),
+        //         success: function (data) {
+        //             if ($.trim(data) === "success") {
+        //                 window.location.assign('dashboard');
+        //             } else {
+        //                 $(".errMsg").show().slideDown(500);
+        //                 $(".errMsg span").html(data);
+        //                 $("#loader_holder").hide();
+        //             }
+        //         }
+        //     });
+        // });
+
+        // $('#reqUserAccount').ajaxForm({
+        //     beforeSend: function () {
+        //         $('#loader_holder').show();
+        //     },
+        //     success: function (data) {
+        //         if (data.trim() === "SUCCESS") {
+        //             $('#loader_holder').hide();
+        //             SweetSuccessALert("DONE ! Successfully applied for account.Please check your Email Inbot(/Junk E-mail Folder) for Further process.");
+        //         } else {
+        //             $('#loader_holder').hide();
+        //             SweetErrorALert(data);
+        //         }
+        //     }
+        // });
+    </script>
+
+</body>
+
+</html>
