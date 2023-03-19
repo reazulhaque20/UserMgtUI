@@ -40,16 +40,28 @@ app.controller('registerCtrl', function (serverURL, uiURL, $scope, $http, $windo
 
     $scope.getServerURL();
     $scope.getUiURL();
+       
     $scope.goToLogin = function () {
         $window.location.href = $scope.urlUI + 'index.html';
     };
-    $scope.getUserInfo = function (userId) {
+    
+     $scope.addUser = {
 
+    };
+    $scope.userId = '';
+    $scope.getUserInfo = function (userId) {
+        $scope.userId = userId;
+        var config = {
+            headers: {
+                'NO-AUTH': 'True',
+                'Content-Type': 'application/json'
+            }
+        }
         if (angular.isUndefined(userId)) {
             return;
         }
 
-        $http.post($scope.urlServer + "api/auth/getEmployeeDetail/" + $scope.userId)
+        $http.get($scope.urlServer + "api/auth/getEmployeeDetail/" + $scope.userId, config)
             .then(
                 function (response) {
                     console.log(response.data);
@@ -61,10 +73,12 @@ app.controller('registerCtrl', function (serverURL, uiURL, $scope, $http, $windo
                         $scope.reportingTo = '';
                         return;
                     }
-                    $scope.userName = response.data.userInfo.userName;
-                    $scope.designation = response.data.userInfo.designation;
-                    $scope.department = response.data.userInfo.department;
-                    $scope.reportingTo = response.data.userInfo.reportingTo;
+                    $scope.addUser.employeeName = response.data.employeeDetails.employeeName;
+                    $scope.addUser.designation = response.data.employeeDetails.designation;
+                    $scope.addUser.department = response.data.employeeDetails.department;
+                    $scope.addUser.telephoneNo = response.data.employeeDetails.phone;
+                    $scope.addUser.emailId = response.data.employeeDetails.email;
+                    $scope.addUser.telephoneExt = response.data.employeeDetails.ext;
                 },
                 function (errResponse) {
                     $scope.message('!ERROR!', 'Error While Retriving User Info', 'error');
@@ -84,15 +98,16 @@ app.controller('registerCtrl', function (serverURL, uiURL, $scope, $http, $windo
             }
         }
         $scope.register = {};
-        $scope.register.userId = $scope.userId;
-        $scope.register.userName = $scope.userName;
-        $scope.register.designation = $scope.designation;
-        $scope.register.department = $scope.department;
-        $scope.register.reportingTo = $scope.reportingTo;
-        $scope.register.extNo = $scope.extNo;
-        $scope.register.password = $scope.password;
+//        $scope.register.userId = $scope.userId;
+//        $scope.register.userName = $scope.userName;
+//        $scope.register.designation = $scope.designation;
+//        $scope.register.department = $scope.department;
+//        $scope.register.reportingTo = $scope.reportingTo;
+//        $scope.register.extNo = $scope.extNo;
+//        $scope.register.password = $scope.password;
         console.log($scope.register);
-        $http.post($scope.urlServer + "api/auth/registerNewUser/", $scope.register, config)
+        $scope.addUser.userId = $scope.userId;
+        $http.post($scope.urlServer + "api/auth/registerNewUser/", $scope.addUser, config)
             .then(
                 function (response) {
                     console.log(response);

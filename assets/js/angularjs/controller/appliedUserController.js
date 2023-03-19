@@ -2,20 +2,12 @@ app.controller('appliedUserCtrl', function (serverURL, $scope, $http, ngTablePar
 
     $scope.getAppliedUserData = function () {
         $scope.urlServer = serverURL;//protocol + "//" + host + ":" + "8081" + "/";
-        $http.get("http://localhost:8080/api/v1/user/getInactiveUsers").then(
+        $http.get(serverURL + "api/mgt/getAllInactiveUsers").then(
             function (response) {
-                console.log(response);
-                var data = response.data.userInfoList;
-                $scope.tableParams = new ngTableParams({
-                    page: 1,            // show first page
-                    count: 5           // count per page
-                }, {
-                    total: data.length, // length of data
-                    dataset: data
-                });
+                $scope.employees = response.data.employees;
             },
             function (errResponse) {
-
+                console.log(errResponse);
             }
         );
 
@@ -23,4 +15,16 @@ app.controller('appliedUserCtrl', function (serverURL, $scope, $http, ngTablePar
     }
 
     $scope.getAppliedUserData();
+    
+    $scope.getAllRoles = function(){
+        $http.get(serverURL + "api/role/getAllRoles").then(
+          function(response){
+              $scope.roles = response.data;
+          },
+          function(errResponse){
+                    console.log(errResponse);
+          }
+        );
+    }
+    $scope.getAllRoles();
 });

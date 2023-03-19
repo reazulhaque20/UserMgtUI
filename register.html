@@ -70,14 +70,14 @@
                                                 <div class="mb-2">
                                                     <label class="form-label">User Name</label>
                                                     <input type="text" class="form-control" name="user_name"
-                                                        ng-model="userName" id="user_name" readonly="">
+                                                        ng-model="addUser.employeeName" id="user_name" readonly="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-2">
                                                     <label class="form-label">Designation</label>
                                                     <input type="text" class="form-control" name="designation"
-                                                        ng-model="designation" id="designation" readonly="">
+                                                        ng-model="addUser.designation" id="designation" readonly="">
                                                 </div>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@
                                             <div class="mb-2">
                                                 <label class="form-label">Department</label>
                                                 <input class="form-control form-control-sm GlobalSelect"
-                                                    ng-model="department" name="department_id" id="department_id"
+                                                    ng-model="addUser.department" name="department_id" id="department_id"
                                                     disabled required>
                                             </div>
                                         </div>
@@ -93,7 +93,7 @@
                                             <div class="mb-2">
                                                 <label class="form-label">Reporting To</label>
                                                 <input class="form-control form-control-sm GlobalSelect"
-                                                    ng-model="reportingTo" name="report_to" id="report_to" disabled>
+                                                    ng-model="addUser.reportingTo" name="report_to" id="report_to" disabled>
 
                                             </div>
                                         </div>
@@ -102,14 +102,14 @@
                                                 <div class="mb-5">
                                                     <label class="form-label">Extention</label>
                                                     <input type="text" class="form-control number" name="extention"
-                                                        ng-model="extNo" id="extention" required="">
+                                                        ng-model="addUser.telephoneExt" id="extention" required="">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="mb-5">
                                                     <label class="form-label">Password</label>
                                                     <input type="password" class="form-control" name="password"
-                                                        ng-model="password" required="">
+                                                        ng-model="addUser.password" required="">
                                                 </div>
                                             </div>
                                         </div>
@@ -143,6 +143,7 @@
     <script src="assets/js/angularjs/angular.min.js"></script>
     <script src="assets/js/angularjs/dependency/ng-table.min.js"></script>
     <script src="assets/js/angularjs/dependency/smart-table.min.js"></script>
+    <script src="assets//js/angularjs/dependency/angular-route.js"></script>
     <script src="assets/js/angularjs/dependency/sweetalert.min.js"></script>
     <script src="assets/js/angularjs/dependency/sweetAlert.js"></script>
     <script src="assets/js/angularjs/app.js"></script>

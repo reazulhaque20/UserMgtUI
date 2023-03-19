@@ -10,40 +10,6 @@
         <meta name="author" content="Rifat Tanjir">
         <link rel="shortcut icon" href="../assets/images/favicon.png">
         <title>Agro ERP System</title>
-
-        <!-- DataTables -->
-        <link href="../assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <!-- Responsive datatable examples -->
-        <link href="../assets/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-
-        <!-- choices css -->
-        <link href="../assets/css/choices.min.css" rel="stylesheet" type="text/css" />
-        <!--<link href="assets/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />-->
-        <!-- datepicker css -->
-        <link rel="stylesheet" href="../assets/css/flatpickr.min.css">
-        <!-- FullCalender Css -->
-        <link href="../assets/js/vendors/fullcalendar/core/main.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/js/vendors/fullcalendar/daygrid/main.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/js/vendors/fullcalendar/bootstrap/main.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/js/vendors/fullcalendar/timegrid/main.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/css/toastr.min.css" rel="stylesheet" type="text/css">
-        <link href="../assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css" <!-- Bootstrap Css -->
-        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <!-- Select 2 Css -->
-        <link href="../assets/css/select2.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/css/select2-bootstrap-5-theme.min.css" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-        <link href="../assets/js/angularjs/dependency/sweet-alert.css" />
-        <link rel="stylesheet" href="../assets/js/angularjs/dependency/ng-table.min.css">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" />
-        <!-- Custom Css-->
-        <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
-
-        <!--        <link href="../../assets/css/ng-table/ng-table.min.css" rel="stylesheet" type="text/css" />-->
     </head>
 
     <body data-sidebar-size="lg" data-topbar="dark" ng-app="myApp" ng-controller="userListCtrl">
@@ -68,42 +34,44 @@
                                             User</button>
                                     </div>
                                     <div class="card-body">
-<!--                                            <table ng-table="tableParams" class="table" show-filter="true">
-                                                <tr ng-repeat="user in $data">
-                                                    <td data-title="'SN'">{{ (tableParams.page() - 1) * tableParams.count() +
-                                                                            $index + 1}}</td>
-                                                    <td data-title="'UserID'" filter="{ userId : 'text' }" sortable="userId">
-                                                        {{ user.userId}}</td>
-                                                    <td data-title="'UserName'" filter="{ userName: 'text' }"
-                                                        sortable="userName">
-                                                        {{ user.empName}}</td>
-                                                    <td data-title="'Designation'" filter="{ designation: 'text' }"
-                                                        sortable="designation">
-                                                        {{ user.designation}}</td>
-                                                    <td data-title="'Department'" filter="{ department: 'text' }"
-                                                        sortable="department">
-                                                        {{ user.department}}</td>
-                                                    <td data-title="'PhoneNo'" filter="{ phoneNo : 'text'}" sortable="phoneNo">
-                                                        {{
-                                                                        user.mobile}}</td>
-                                                    <td data-title="Action"><button type="button" ng-click="editUser(user)"
-                                                                                    data-bs-toggle="modal" data-bs-target="#userUpdateModal"
-                                                                                    class="btn btn-success">Edit</button>&nbsp;<button type="button" ng-click="userDeleteConfirmation(user)"
-                                                                                    class="btn btn-danger">Delete</button></td>
-                                                </tr>
-                                            </table>-->
-<table id="userList" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Extn.</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-    </table>
+                                      <div class="row" >
+                                            <div class="col-md-12">
+<!--                                                <table class="table table-striped table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>SL</th>
+                                                            <th>Employee ID</th>
+                                                            <th>Employee Name</th>
+                                                            <th>Department</th>
+                                                            <th>Designation</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="employee in employees">
+                                                            <td>{{$index + 1}}</td>
+                                                            <td>{{employee.userId}}</td>
+                                                            <td>{{employee.employeeName}}</td>
+                                                            <td>{{employee.department}}</td>
+                                                            <td>{{employee.designation}}</td>
+                                                            <td><button class="btn"><i class="fa fa-home"></i></button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>-->
+
+                        <table id="employees" class="table">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Employee Name</th>
+                                    <th>Designation</th>
+                                    <th>Department</th>
+                                    <th>Company</th>
+                                </tr>
+                            </thead>
+                        </table>
+                                                            </div>
+                                        </div>      
                                     </div>
                                 </div>
                             </div>
@@ -430,45 +398,7 @@
         <!-- Change Password Modal -->
         <!-- Footer Libraries page -->
 
-        <!-- JAVASCRIPT -->
-        <script src="../assets/js/jquery.min.js"></script>
-        <script src="../assets/js/jquery.form.js"></script>
-        <script src="../assets/js/bootstrap.bundle.min.js"></script>
-        <script src="../assets/js/metisMenu.min.js"></script>
-        <script src="../assets/js/simplebar.min.js"></script>
-        <script src="../assets/js/waves.min.js"></script>
-        <script src="../assets/js/angular.min.js"></script>
-        <script src="../assets/js/choices.min.js"></script>
-        <script src="../assets/js/select2.min.js"></script>
-        <script src="../assets/js/jquery.dataTables.min.js"></script>
-        <script src="../assets/js/dataTables.bootstrap4.min.js"></script>
-        <script src="../assets/js/dataTables.responsive.min.js"></script>
-        <script src="../assets/js/responsive.bootstrap4.min.js"></script>
-        <script src="../assets/js/dataTables.buttons.min.js"></script>
-        <script src="../assets/js/dataTables.select.min.js"></script>
-        <script src="../assets/js/jszip.min.js"></script>
-        <script src="../assets/js/buttons.html5.min.js"></script>
-        <script src="../assets/js/buttons.colVis.min.js"></script>
-        <script src="../assets/js/buttons.bootstrap4.min.js"></script>
-        <script src="../assets/js/buttons.print.min.js"></script>
-        <script src="../assets/js/flatpickr.min.js"></script>
-        <script src="../assets/js/toastr.min.js"></script>
-        <script src="../assets/js/sweetalert2.min.js"></script>
-        <script src="../assets/js/dummy/datatables.init.js"></script>
-        <script src="../assets/js/app.js"></script>
 
-        <script src="../assets/js/angularjs/angular.min.js"></script>
-        <script src="../assets/js/angularjs/dependency/ng-table.min.js"></script>
-        <script src="../assets/js/angularjs/dependency/smart-table.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/locale/bootstrap-table-en-US.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/extensions/angular/bootstrap-table-angular.min.js"></script>
-        <!-- Sweet Alert -->
-        <script src="../assets/js/angularjs/dependency/sweetalert.min.js"></script>
-        <script src="../assets/js/angularjs/dependency/sweetAlert.js"></script>
-        <!-- Sweet Alert -->
-        <script src="../assets/js/angularjs/app.js"></script>
-        <script src="../assets/js/angularjs/controller/userListController.js"></script>
         <script>
                                     $(document).ready(function () {
                                         $("#loader_holder").hide();
@@ -504,22 +434,55 @@
                                     });
         </script>
         <script>
-            $(document).ready(function () {
-                $('#userList').DataTable({
-                    ajax: {
-                        url: '${pageContext.request.contextPath}/api/mgt/getAllUsers',
-                        data: 
-                    },
-                    columns: [
-                        { data: 'name' },
-                        { data: 'position' },
-                        { data: 'office' },
-                        { data: 'extn' },
-                        { data: 'start_date' },
-                        { data: 'salary' },
-                    ],
-                });
-            });
+//           $('table#employees').DataTable({
+//            ajax: 'http://localhost:9192/userMgt/api/mgt/getAllUsersDT',
+//            serverSide: true,
+//            columns: [
+//                {
+//                    data: 'userId'
+//                },
+//                {
+//                    data: 'employeeName'
+//                },
+//                {
+//                    data: 'designation'
+//                },
+//                {
+//                    data: 'department'
+//                },
+//                {
+//                    data: 'company'
+//                }
+//            ]
+//        });
+            $('table#employees').DataTable({
+            ajax: {
+                contentType: 'application/json',
+                url: 'http://localhost:9192/userMgt/api/mgt/getAllUsersDT',
+                type: 'POST',
+                data: function (d) {
+                    return JSON.stringify(d);
+                }
+            },
+            serverSide: true,
+            columns: [
+                {
+                    data: 'userId'
+                },
+                {
+                    data: 'employeeName'
+                },
+                {
+                    data: 'designation'
+                },
+                {
+                    data: 'department'
+                },
+                {
+                    data: 'company'
+                }
+            ]
+        });
         </script>
     </body>
 

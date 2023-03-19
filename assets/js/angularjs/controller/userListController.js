@@ -26,37 +26,52 @@ app.controller('userListCtrl', function (serverURL, uiURL, $scope, $http, ngTabl
             }
         }
 
-        $http.get(serverURL + "api/user/getAllUser", config).then(
+        $http.get(serverURL + "api/mgt/getAllUsers", config).then(
             function (response) {
-                var data = response.data;
-                $scope.users = data;
-                $scope.tableParams = new ngTableParams({
-                    page: 1,            // show first page
-                    count: 5           // count per page
-                }, {
-                    total: data.length, // length of data
-                    dataset: data
-                });
-
-                 $scope.usersTable = new NgTableParams({
-                    page: 1,
-                    count: 5
-                }, {
-                    total: $scope.users.length,
-                    getData: function($defer, usersTable){
-                        usersTable.total($scope.users.length);
-                        $scope.data = $scope.users.slice((usersTable.page() - 1) * usersTable.count(), usersTable.page() * usersTable.count());
-                        $defer.resolve($scope.data);
-                    }
-                 });
+                var data = response.data.employees;
+                $scope.employees = response.data.employees;
+                
 
             },
             function (errResponse) {
-
+                    console.log(errResponse);
             }
         );
-    }
+    };
+    
     $scope.getUserListData();
+    
+//    $scope.maxSize = 5;
+//    $scope.totalCount = 0;
+//    $scope.pageIndex = 1;
+//    $scope.pageSizeSelected = 5;
+//    $scope.getAllEmployeesList = function(){
+//        var config = {
+//            headers: {
+//                'NO-AUTH': 'True',
+//                'Content-Type': 'application/json',
+//                'Authorization': 'Bearer ' + $scope.token
+//            }
+//        }
+//        
+//        $http.get(serverURL +"api/mgt/getAllUsers?pageIndex=" + $scope.pageIndex-1 + "&pageSize=" + $scope.pageSizeSelected, config).then(  
+//                       function (response) {  
+//                           $scope.employees = response.data.employees;  
+//                           $scope.totalCount = response.data.totalCount;  
+//                       },  
+//                       function (err) {  
+//                           var error = err;  
+//                       });  
+//    }
+//    $scope.getAllEmployeesList();
+//    $scope.pageChanged = function () {  
+//        $scope.getAllEmployeesList();  
+//    };  
+
+//    $scope.changePageSize = function () {  
+//        $scope.pageIndex = 1;  
+//        $scope.getAllEmployeesList();  
+//    };  
 
     $scope.getUserInfo = function (userId) {
         if (angular.isUndefined(userId)) {
@@ -335,5 +350,54 @@ app.controller('userListCtrl', function (serverURL, uiURL, $scope, $http, ngTabl
                 $scope.message('!ERROR!', 'Unknown Error.', 'error');
             }
          );
-    }
+    };
+    
+//    $scope.getAllRequisitionsList = function() {
+//            $('#AllWoRequisitionListTbl').DataTable({
+//                responsive: true,
+//                stateSave: true,
+//                pageLength: 15,
+//                dom: 'Bfrtip',
+//                buttons: [
+//                    'pageLength',
+//                    {
+//                        extend: 'collection',
+//                        text: 'Export Data',
+//                        buttons: [ 'pdfHtml5', 'excelHtml5', 'csvHtml5', 'copyHtml5' ]
+//                    }
+//                ],
+//                lengthMenu: [ [ 15, 50, 200, 300, -1 ], [ '15 Rows', '50 Rows', '200 Rows', '300 Rows', 'Show All Rows' ] ],
+//                bPaginate: true,
+//                order: [ 0, 'desc' ],
+//                bInfo: true,
+//                iDisplayStart:0,
+//                bProcessing : true,
+//                bServerSide : true,
+//                sAjaxSource : "AydlRequestListDT",
+//                fnServerData: function (sSource, aoData, fnCallback, oSettings) {
+//                    aoData.push({ "name": "userid", "value": userid });
+//                    aoData.push({ "name": "userrole", "value": userrole });
+//                    aoData.push({ "name": "dept", "value": dept });
+//                    aoData.push({ "name": "req_type", "value": "ALL" });
+//                    oSettings.jqXHR = $.ajax({
+//                        "dataType": 'json',
+//                        "type": "POST",
+//                        "url": sSource,
+//                        "data": aoData,
+//                        "success": fnCallback
+//                    }); 
+//                },
+//                fnCreatedRow: function( nRow, aData, iDataIndex ) {
+//                    $(nRow).attr('class', aData[10]);
+//                },
+//                sServerMethod : "POST",
+//                rowCallback: function(row) {
+//                    if (!row.compiled) {
+//                      $compile(angular.element(row))($scope);
+//                      row.compiled = true;  
+//                    }
+//                }
+//            });
+//        }
+    
 });

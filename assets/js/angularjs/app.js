@@ -160,5 +160,10 @@ app.config(function($routeProvider) {
     .when("/userList", {
         templateUrl : "users/users_list.html",
         controller : "userListCtrl"
-    });
+    })
+    .when("/appliedUsers",{
+        templateUrl : "users/applied_users.html",
+        controller : "appliedUserCtrl"
+    })
+    ;
 });
